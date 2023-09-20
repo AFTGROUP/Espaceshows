@@ -1,0 +1,141 @@
+body {
+    margin: 10px;
+    background: #ddd;
+}
+
+/* #9b4793 */
+input::-webkit-input-placeholder {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+nav {
+    position: relative;
+    padding: 0;
+    height: 80px;
+}
+
+#Logo {
+    margin-right: 10px;
+}
+
+#collapsibleNavId ul li a {
+    margin-left: 5px;
+}
+
+#login {
+    margin-left: 90px;
+    position: absolute;
+    right: 5px;
+}
+
+#connexion {
+    width: auto;
+}
+
+#connexion a {
+    background: transparent;
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 8px;
+    text-align: center;
+    border: none;
+    transition: all 0.5s ease-in;
+}
+
+#connexion a:hover {
+    background: #000;
+    color: #c30f66;
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+#barreSearch {
+    margin-left: 20px;
+}
+
+#descript {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    color: #ffff;
+}
+.container .row .card{
+    height:35vh;
+}
+.mt-4  ul li{
+    list-style: none;
+    border: 4px solid #000;
+    padding: 8px;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+}
+.mt-4 ul li  a {
+    text-decoration: none;
+    color: #000;
+}
+.mt-4  ul li:hover{
+    background: #c30f66;
+}
+select option{
+    border: 1px solid #0000;
+}
+#pluss{
+    text-align:center;
+    padding: 5px;
+    border-radius: 5px;
+    color: #000;
+    font-weight:500; 
+    background: #f26106;
+    text-decoration:none;
+}
+/* Responsvive */
+@media screen and (max-width:991px) {
+    nav {
+        height: auto;
+    }
+
+    #barreSearch {
+        margin-left: 0;
+    }
+
+    #login {
+        margin-left: 0;
+        float: none;
+        position: relative;
+    }
+
+    #collapsibleNavId ul li a {
+        margin-left: 0;
+    }
+
+    #descript {
+        top: 30%;
+        left: 5%;
+        text-align: center;
+    }
+    .container .row .card{
+        margin:0;
+    }
+    .container .row .card{
+        height:auto;
+    }
+    .mt-4  ul li:nth-child(4){
+        margin-top:8px;
+    }
+    .mt-4  ul li:nth-child(5){
+        margin-top:8px;
+    }
+    .mt-4  ul li:nth-child(6){
+        margin-top:8px;
+    }
+    .mt-4  ul li:nth-child(7){
+        margin-top:8px;
+    }
+    #pluss{
+        margin-left: 36%;
+    }
+}

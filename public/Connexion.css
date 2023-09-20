@@ -1,0 +1,22 @@
+
+input{
+    border: 3px solid #c30f66;
+    outline: none;
+    padding: 8px;
+    border-radius: 7px;
+    font-weight: 500;
+}
+input[type="checkbox"]{
+    position: absolute;
+    right: 40%;
+    margin-top: 8px;
+    height: 20px;
+}
+::-webkit-input-placeholder{
+    font-weight: 500;
+    position: relative;
+    left: 30px;
+}
+p a{
+    text-decoration: none;
+}
