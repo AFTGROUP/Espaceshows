@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Laravel Auth
 Auth::routes();
 
+// Google Auth
+// Route::get('/auth/google',[App\Http\Controllers\Auth\GoogleController::class,'redirectToGoogle']);
+// Route::get('/auth/google',[App\Http\Controllers\Auth\GoogleController::class,'handleGoogleCallback']);
+
+
+// views
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('Profil',[App\Http\Controllers\ProfilController::class,'index']);

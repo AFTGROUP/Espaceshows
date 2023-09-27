@@ -1,5 +1,5 @@
 
-input{
+input, #googgle, select{
     border: 3px solid #c30f66;
     outline: none;
     padding: 8px;
@@ -14,9 +14,12 @@ input[type="checkbox"]{
 }
 ::-webkit-input-placeholder{
     font-weight: 500;
-    position: relative;
-    left: 30px;
+    /* position: relative;
+    left: 30px; */
 }
 p a{
     text-decoration: none;
+}
+select[name="role"] option{
+font-weight: 500;
 }

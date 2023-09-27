@@ -9,7 +9,9 @@
                 @csrf
                 <div class="row mb-3">
                     <div class="col">
-                        <button class="col-md-12" style="background:transparent; border: 3px solid #c30f66;padding:8px; border-radius:7px;font-weight:500;"><img src="" alt=""> Continuer avec Google</button>
+                        @guest
+                        <a href="{{ url('/auth/google') }}" id="googgle" class="btn btn-google col-md-12">Se connecter avec Google</a>
+                        @endguest
                     </div>
                 </div>
                 <h4 class="text-center mb-3" style="font-weight: 300;">ou</h4>

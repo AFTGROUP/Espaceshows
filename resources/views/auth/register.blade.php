@@ -10,7 +10,7 @@
 
                 <div class="row mb-3">
                     <div class="col mb-3">
-                        <input  id="name" type="text" class=" col-md-12 @error('name') is-invalid @enderror" name="name" placeholder="Nom" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class=" col-md-12 @error('name') is-invalid @enderror" name="name" placeholder="Nom" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -21,7 +21,16 @@
 
                 <div class="row mb-3">
                     <div class="col mb-3">
-                        <input  id="firstname" type="text" class=" col-md-12 @error('firstnamename') is-invalid @enderror" name="firstname" placeholder="prénom" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="firstname" type="text" class=" col-md-12 @error('firstnamename') is-invalid @enderror" name="firstname" placeholder="prénom" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col mb-3">
+                        <select name="role" class="col-md-12">
+                            <option value="Choisissez un type de compte" disabled selected><span style=" font-weight: 500;margin-left: 30px;">Selectionnez un compte</span></option>
+                            <option value="organisateur">Organisateur</option>
+                            <option value="participant">Participant</option>
+                        </select>
                     </div>
                 </div>
 
@@ -33,7 +42,7 @@
 
                 <div class="row mb-3">
                     <div class="col mb-3">
-                        <input  id="email" type="email" class=" col-md-12 @error('email') is-invalid @enderror" placeholder="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" class=" col-md-12 @error('email') is-invalid @enderror" placeholder="email" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -45,7 +54,7 @@
 
                 <div class="row mb-3">
                     <div class="col mb-3">
-                        <input  id="password" type="password" class=" col-md-12 @error('password') is-invalid @enderror" placeholder="mot de passe" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class=" col-md-12 @error('password') is-invalid @enderror" placeholder="mot de passe" name="password" required autocomplete="new-password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -56,12 +65,12 @@
 
                 <div class="row mb-3">
                     <div class="col mb-3">
-                        <input  id="password-confirm" type="password" class=" col-md-12" name="password_confirmation" placeholder="confirmer mot de passe" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class=" col-md-12" name="password_confirmation" placeholder="confirmer mot de passe" required autocomplete="new-password">
                     </div>
                 </div>
                 <div class="row d-flex">
                     <input type="checkbox" name="accept" id="accept" required>
-                    <p class="fs-5"style="margin-left: 30px;"><a href="">Politique d'utilisation et de confidentialité</a></p>
+                    <p class="fs-5" style="margin-left: 30px;"><a href="">Politique d'utilisation et de confidentialité</a></p>
                 </div>
                 <div class="row d-flex">
                     <input type="checkbox" name="accept" id="accept" required>
