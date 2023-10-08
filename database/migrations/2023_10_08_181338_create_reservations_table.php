@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('telephone');
-            $table->string('password');
-            $table->rememberToken();
+            $table->date('date_reservation');
+            $table->foreignUuid('user_id')->constrained('users');
+            $table->foreignUuid('ticket_id')->constrained('tickets');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('reservations');
     }
 };
