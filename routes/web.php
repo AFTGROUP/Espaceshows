@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('portal');
 });
 
 Route::get('/portal', function () {
     return view('portal');
+});
+
+Route::get('/ticket', function () {
+    return view('ticket');
 });
 
 Auth::routes();
