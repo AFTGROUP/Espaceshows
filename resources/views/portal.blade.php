@@ -13,7 +13,7 @@
         <!-- Overlay content -->
         <div class="container position-relative pb-5 zindex-5">
 
-        
+        <br> <br>
           <!-- Featured article -->
           <div class="row mb-xxl-5 py-md-4 py-lg-5">
             <div class="col-lg-6 col-md-7 pb-3 pb-md-0 mb-4 mb-md-5">
@@ -453,6 +453,370 @@
           </div>
         </div>
       </section>
+
+      <!-- Page content -->
+      <section class="container mt-4 mb-lg-5 pt-lg-2 pb-5">
+
+        <!-- Page title + Layout switcher + Search form -->
+        <div class="row align-items-end gy-3 mb-4 pb-lg-3 pb-1">
+          <div class="col-lg-5 col-md-4">
+            <h1 class="mb-2 mb-md-0">Blog Grid</h1>
+          </div>
+          <div class="col-lg-7 col-md-8">
+            <form class="row gy-2">
+              <div class="col-lg-5 col-sm-6">
+                <div class="d-flex align-items-center">
+                  <div class="d-flex align-items-center me-sm-4 me-3">
+                    <a href="blog-list-no-sidebar.html" class="nav-link me-2 p-0">
+                      <i class="bx bx-list-ul fs-4"></i>
+                    </a>
+                    <a href="blog-grid-no-sidebar.html" class="nav-link p-0 active">
+                      <i class="bx bx-grid-alt fs-4"></i>
+                    </a>
+                  </div>
+                  <select class="form-select">
+                    <option>All categories</option>
+                    <option value="processes-and-tools">Processes &amp; Tools</option>
+                    <option value="startups">Startups</option>
+                    <option value="digital">Digital</option>
+                    <option value="strategy">Strategy</option>
+                    <option value="business">Business</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-7 col-sm-6">
+                <div class="input-group">
+                  <input type="text" class="form-control pe-5 rounded" placeholder="Search the blog...">
+                  <i class="bx bx-search position-absolute top-50 end-0 translate-middle-y me-3 zindex-5 fs-lg"></i>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Blog grid -->
+        <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/01.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Business</a>
+                  <span class="fs-sm text-muted">May 19, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/01.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Jerome Bell
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/02.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Digital</a>
+                  <span class="fs-sm text-muted">Sep 28, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">Why UX Design Matters and How it Affects Ranking</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/01.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Jerome Bell
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/03.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Business</a>
+                  <span class="fs-sm text-muted">Sep 16, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">This Week in Search: New Limits and Exciting Features</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/02.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Ralph Edwards
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/04.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes &amp; Tools</a>
+                  <span class="fs-sm text-muted">12 hours ago</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">Five Effective Lead Generation Techniques For Your Business</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/03.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Esther Howard
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/05.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Digital</a>
+                  <span class="fs-sm text-muted">Oct 9, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">Inclusive Marketing: Why and How Does it Work?</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/04.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Jane Cooper
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/06.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Marketing</a>
+                  <span class="fs-sm text-muted">Apr 2, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">How Agile is Your Forecasting Process?</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/05.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Albert Flores
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/07.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes &amp; Tools</a>
+                  <span class="fs-sm text-muted">Sep 3, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">Your Guide to Optimising A JavaScript-enabled Website</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/02.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Ralph Edwards
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/08.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes &amp; Tools</a>
+                  <span class="fs-sm text-muted">Sep 10, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">A Study on Smartwatch Design Qualities and People’s Preferences</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/03.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Esther Howard
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                  <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="assets/img/blog/09.jpg" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Strategy</a>
+                  <span class="fs-sm text-muted">Sep 16, 2021</span>
+                </div>
+                <h3 class="h5 mb-0">
+                  <a href="blog-single.html">This Long-Awaited Technology May Finally Change the World</a>
+                </h3>
+              </div>
+              <div class="card-footer py-4">
+                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                  <img src="assets/img/avatar/02.jpg" class="rounded-circle me-3" width="48" alt="Avatar">
+                  Ralph Edwards
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center pt-md-4 pt-2">
+            <li class="page-item">
+              <a href="#" class="page-link">
+                <i class="bx bx-chevron-left mx-n1"></i>
+              </a>
+            </li>
+            <li class="page-item disabled d-sm-none">
+              <span class="page-link text-body">2 / 4</span>
+            </li>
+            <li class="page-item d-none d-sm-block">
+              <a href="#" class="page-link">1</a>
+            </li>
+            <li class="page-item active d-none d-sm-block" aria-current="page">
+              <span class="page-link">
+                2
+                <span class="visually-hidden">(current)</span>
+              </span>
+            </li>
+            <li class="page-item d-none d-sm-block">
+              <a href="#" class="page-link">3</a>
+            </li>
+            <li class="page-item d-none d-sm-block">
+              <a href="#" class="page-link">4</a>
+            </li>
+            <li class="page-item">
+              <a href="#" class="page-link">
+                <i class="bx bx-chevron-right mx-n1"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+
+
+       <!-- Sign up CTA -->
+    <section class="container position-relative zindex-2">
+      <div class="bg-dark border border-light rounded-3 py-5 px-4 px-sm-0">
+        <div class="row justify-content-center py-sm-2 py-lg-5">
+          <div class="col-xl-6 col-lg-7 col-md-8 col-sm-10 text-center">
+            <h2 class="h1 text-light mb-4">Ready to Get Started?</h2>
+            <p class="fs-lg text-light opacity-70 pb-4 mb-3">Organize your tasks with a 14-day free trial</p>
+
+            <!-- Desktop form -->
+            <form class="input-group input-group-lg d-none d-sm-flex needs-validation mb-3" novalidate>
+              <input type="email" class="form-control rounded-start ps-5" placeholder="Your email" required>
+              <i class="bx bx-envelope fs-lg text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
+              <div class="invalid-tooltip position-absolute top-100 start-0">Please provide a valid email address.</div>
+              <button type="submit" class="btn btn-primary">Get started for free</button>
+            </form>
+
+            <!-- Mobile form -->
+            <form class="needs-validation d-sm-none mb-3" novalidate>
+              <div class="position-relative mb-3">
+                <input type="email" class="form-control form-control-lg rounded-start ps-5" placeholder="Your email" required>
+                <i class="bx bx-envelope fs-lg text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
+                <div class="invalid-tooltip position-absolute top-0 start-0 mt-n4">Please provide a valid email address.</div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg w-100">Get started for free</button>
+            </form>
+            <p class="fs-sm text-light opacity-50 mb-0">No subscriptions. No annual fees. No lock-ins.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
 
 
