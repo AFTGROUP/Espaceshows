@@ -7,7 +7,15 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
+use OpenApi\Annotations as OA;
 
+
+/**
+ * @OA\Info(
+ *    title="Espace Show API",
+ *    version="1.0.0",
+ * )
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
