@@ -30,10 +30,10 @@ Route::middleware(['api'])->group(function ($router) {
 
 
     Route::get('/allRoles', [RegistrationController::class, 'allRoles'])->name('allRoles');
-    Route::get('/selectRole', [RegistrationController::class, 'selectRole'])->name('selectRole');
+    Route::post('/selectRole', [RegistrationController::class, 'selectRole'])->name('selectRole');
     Route::post('register', [RegistrationController::class, 'register']);//Inscription
 
- //   Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+  Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
  //   Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
    // Route::post('password/email', [ForgotPasswordController::class, 'forgot']);
   //  Route::post('password/reset', [ForgotPasswordController::class, 'reset']);

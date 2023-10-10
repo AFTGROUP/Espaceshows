@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tempory_data', function (Blueprint $table) {
-           
+
              # $table->id();
            $table->uuid('id')->primary();
            $table->string('temporary_token')->unique();
           # $table->unsignedBigInteger('role_id');
-          $table->foreignUuid('role_id')->constained('roles');
+          $table->uuid('role_id');
            $table->timestamps();
         });
     }

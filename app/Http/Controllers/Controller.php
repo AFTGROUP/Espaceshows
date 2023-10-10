@@ -13,12 +13,12 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\OpenApi(
  *     @OA\Info(
- *         title="API Documentation",
+ *         title="Espace Show API Documentation",
  *         version="1.0"
  *     ),
  *     @OA\Server(
- *         url="http://localhost/api",
- *         description="API Server"
+ *         url="http://localhost:8000/api/documentation",
+ *         description="Espace Show API Server"
  *     ),
  *     @OA\Components(
  *         @OA\Schema(
@@ -61,15 +61,36 @@ class Controller extends BaseController
     {
         return ResponseBuilder::asError($api_code)->withHttpCode($http_code)->build();
     }
+    /**
+     * La demande n'est pas valide. Ce code est renvoyé lorsque le serveur tente de traiter la demande,
+     *  mais que des aspects de cette demande ne sont pas valides
+     */
 
     public function respondBadRequest($api_code)
     {
         return $this->respondWithError($api_code, 400);
     }
+    /**
+     * Renvoyé par le serveur d'applications lorsque la sécurité de l'application est activée et
+     *  que des informations d'autorisation n'apparaissent pas dans la demande.
+     */
     public function respondUnAuthorizedRequest($api_code)
     {
         return $this->respondWithError($api_code, 401);
     }
+    /**
+     * Indique que le client a tenté d'accéder à une ressource à laquelle il n'a pas accès
+     */
+    public function respondForbidden($api_code)
+    {
+        return $this->respondWithError($api_code, 403);
+    }
+
+    /**
+     * Indique que la ressource ciblée n'existe pas.
+     * L'URI est peut-être incorrect ou la ressource a peut-être été supprimée.
+     */
+
     public function respondNotFound($api_code)
     {
         return $this->respondWithError($api_code, 404);
