@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Traits\UUID;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,9 +18,23 @@ class RoleSeeder extends Seeder
         //
 
         DB::table('roles')->insert([
-            ['name' => 'admin'],
-            ['name' => 'participant'],
-            ['name' => 'acheteur'],
+            [
+                 'id' => Str::uuid()->toString(),
+                'nom' => 'admin',
+            ],
+
+            [
+
+                'id' => Str::uuid()->toString(),
+                'nom' => 'participant'
+
+            ],
+
+            [
+                'id' => Str::uuid()->toString(),
+                'nom' => 'acheteur'
+
+            ],
         ]);
     }
 }

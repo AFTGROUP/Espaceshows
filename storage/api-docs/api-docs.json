@@ -1,9 +1,15 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Espace Show API",
-        "version": "1.0.0"
+        "title": "API Documentation",
+        "version": "1.0"
     },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "API Server"
+        }
+    ],
     "paths": {
         "/api/login": {
             "post": {
@@ -141,6 +147,51 @@
                         "bearerAuth": []
                     }
                 ]
+            }
+        },
+        "/AllRoles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Liste des rôles",
+                "description": "Liste des rôles\n\nRécupère la liste de tous les rôles.",
+                "operationId": "9248ac42db3ff1fac6ab4ebe7d63b6d4",
+                "responses": {
+                    "200": {
+                        "description": "Liste des rôles",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Role"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Role": {
+                "title": "Role",
+                "description": "Modèle de données pour un rôle",
+                "properties": {
+                    "id": {
+                        "description": "ID du rôle",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "description": "Nom du rôle",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
             }
         }
     }

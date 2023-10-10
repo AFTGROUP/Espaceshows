@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RegistrationController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
+/**
+ * Authentification API
+ */
 
 Route::middleware(['api'])->group(function ($router) {
     Route::post('login', [AuthController::class, 'login']); //connexion
@@ -27,7 +28,11 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('refresh', [AuthController::class, 'refresh']); //Rafraîchir le token
     Route::get('me', [AuthController::class, 'me'])->middleware('log.route'); //Données utilisateur
 
-    Route::post('register', [RegistrationController::class, 'register']);
+
+    Route::get('/allRoles', [RegistrationController::class, 'allRoles'])->name('allRoles');
+    Route::get('/selectRole', [RegistrationController::class, 'selectRole'])->name('selectRole');
+    Route::post('register', [RegistrationController::class, 'register']);//Inscription
+
  //   Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
  //   Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
    // Route::post('password/email', [ForgotPasswordController::class, 'forgot']);
@@ -35,3 +40,4 @@ Route::middleware(['api'])->group(function ($router) {
 
    // Route::patch('user/profile', [UserController::class, 'updateProfile']);
 });
+
