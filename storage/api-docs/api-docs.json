@@ -77,6 +77,71 @@
                     }
                 }
             }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Déconnexion de l'utilisateur",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "L'utilisateur s'est déconnecté avec succès"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/refresh": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Actualiser le jeton d'accès",
+                "operationId": "refresh",
+                "responses": {
+                    "200": {
+                        "description": "Le jeton d'accès a été actualisé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "description": "Nouveau jeton d'accès",
+                                            "type": "string"
+                                        },
+                                        "access_type": {
+                                            "description": "Type d'accès (Bearer)",
+                                            "type": "string"
+                                        },
+                                        "expires_in": {
+                                            "description": "Durée de validité en secondes",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     }
 }

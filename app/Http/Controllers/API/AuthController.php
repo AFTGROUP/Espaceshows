@@ -71,6 +71,23 @@ class AuthController extends Controller
         ], "Login Successful");
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/logout",
+     *     tags={"Auth"},
+     *     summary="Déconnexion de l'utilisateur",
+     *     operationId="logout",
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="L'utilisateur s'est déconnecté avec succès"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Non autorisé"
+     *     )
+     * )
+     */
 
     public function logout()
     {
@@ -78,6 +95,28 @@ class AuthController extends Controller
         return $this->respondWithMessage('User successfully logged out');
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/refresh",
+     *     tags={"Auth"},
+     *     summary="Actualiser le jeton d'accès",
+     *     operationId="refresh",
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Le jeton d'accès a été actualisé avec succès",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="token", type="string", description="Nouveau jeton d'accès"),
+     *             @OA\Property(property="access_type", type="string", description="Type d'accès (Bearer)"),
+     *             @OA\Property(property="expires_in", type="integer", description="Durée de validité en secondes")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Non autorisé"
+     *     )
+     * )
+     */
 
     public function refresh()
     {

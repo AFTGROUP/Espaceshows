@@ -22,10 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['api'])->group(function ($router) {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::get('me', [AuthController::class, 'me'])->middleware('log.route');
+    Route::post('login', [AuthController::class, 'login']); //connexion
+    Route::post('logout', [AuthController::class, 'logout']); //Déconnexion
+    Route::post('refresh', [AuthController::class, 'refresh']); //Rafraîchir le token
+    Route::get('me', [AuthController::class, 'me'])->middleware('log.route'); //Données utilisateur
 
     Route::post('register', [RegistrationController::class, 'register']);
  //   Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
