@@ -41,3 +41,9 @@ Route::middleware(['api'])->group(function ($router) {
    // Route::patch('user/profile', [UserController::class, 'updateProfile']);
 });
 
+
+/**
+ * Liste de tous les utilisateurs
+ */
+
+ Route::get('/allUsers', [RegistrationController::class, 'allUsers']);

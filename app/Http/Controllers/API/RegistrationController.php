@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\RegistrationRequest;
-use App\Models\Role;
+use OTPHP\TOTP;
 use App\ApiCode;
+use OtpGenerator;
+use Carbon\Carbon;
+use App\Models\Role;
+use App\Models\User;
+use App\Mail\SendOtp;
+use App\Models\OtpCode;
 use App\Models\TemporyData;
+use Illuminate\Http\Request;
+use Ichtrojan\Otp\Otp;
 use OpenApi\Annotations as OA;
-
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\RegistrationRequest;
 
 class RegistrationController extends Controller
 {
@@ -126,17 +132,25 @@ class RegistrationController extends Controller
 
         $temporaryData = TemporyData::retrieveTemporaryData($temporaryToken);
 
-
-
         if ($temporaryData) {
 
             $user->roles()->attach($temporaryData->role_id);
         }
 
+        //Effacer le token temporaire
+
+        TemporyData::clearTemporaryData($temporaryToken);
 
         //Génération du code otp en son envoi à l'utilisateur
 
-        
+        $otp = new Otp();
+        $otpCode = $otp->generate($user->id, 5, 10);
+
+        $CodeOtp = $otpCode->token;
+
+        // Envoyez le code OTP à l'utilisateur (par e-mail, SMS, etc.)
+        Mail::to($user->email)
+            ->send(new SendOtp($CodeOtp));
 
         return $this->respondWithMessage('User successfully created');
     }

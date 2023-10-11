@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('otp_codes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constained('users');
-            $table->string('otp_code', 6);
+           $table->foreignUuid('user_id')->constained('users');
+            $table->string('otp_code', 6)->unique();
             $table->timestamp('expires_at');
             $table->timestamps();
         });
