@@ -7,7 +7,7 @@
     "servers": [
         {
             "url": "http://localhost:8000/api/documentation",
-            "description": "API Server"
+            "description": "Espace Show API Server"
         }
     ],
     "paths": {
@@ -167,6 +167,65 @@
                                     "items": {
                                         "$ref": "#/components/schemas/Role"
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/select-role": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Sélectionner un rôle avant l'inscription",
+                "description": "Permet à un utilisateur de sélectionner un rôle en fournissant un identifiant de rôle valide.",
+                "operationId": "092b6a4d05c3cb530206da62c4c25319",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "role_id"
+                                ],
+                                "properties": {
+                                    "role_id": {
+                                        "description": "Identifiant du rôle choisi par l'utilisateur.",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Rôle choisi avec succès.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Token temporaire associé au rôle choisi.",
+                                    "type": "string"
+                                },
+                                "example": "temporary_token_value"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur de validation.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Description de l'erreur de validation.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }

@@ -47,6 +47,48 @@ class RegistrationController extends Controller
         return $this->respond($roles, 'Liste des rôles');
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/select-role",
+     *     tags={"Auth"},
+     *     summary="Sélectionner un rôle avant l'inscription",
+     *     description="Permet à un utilisateur de sélectionner un rôle en fournissant un identifiant de rôle valide.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"role_id"},
+     *             @OA\Property(
+     *                 property="role_id",
+     *                 type="integer",
+     *                 description="Identifiant du rôle choisi par l'utilisateur."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Rôle choisi avec succès.",
+     *         @OA\JsonContent(
+     *             type="string",
+     *             example="temporary_token_value",
+     *             description="Token temporaire associé au rôle choisi."
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="Erreur de validation.",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="error",
+     *                 type="string",
+     *                 description="Description de l'erreur de validation."
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
 
 
     public function selectRole(Request $request)
@@ -76,17 +118,25 @@ class RegistrationController extends Controller
     public function register(RegistrationRequest $request)
     {
         $attributes = $request->getAttributes();
-        $user =  User::create($attributes)->sendEmailVerificationNotification();
+
+        $user =  User::create($attributes);
 
         // Récupérez les données associées au token temporaire depuis la base de données temporaire
-        $temporaryToken = $request->getAttributes()['temporary_token'];
+        $temporaryToken =  $attributes['temporary_token'];
 
         $temporaryData = TemporyData::retrieveTemporaryData($temporaryToken);
+
+
 
         if ($temporaryData) {
 
             $user->roles()->attach($temporaryData->role_id);
         }
+
+
+        //Génération du code otp en son envoi à l'utilisateur
+
+        
 
         return $this->respondWithMessage('User successfully created');
     }
