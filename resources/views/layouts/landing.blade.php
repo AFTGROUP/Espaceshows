@@ -173,7 +173,7 @@
         <div class="container px-3">
           <a href="index-2.html" class="navbar-brand pe-3">
             <img src="landingassets/img/logo2.jpg" width="54" alt="Silicon">
-            
+            ESPACE SHOW
           </a>
           <div id="navbarNav" class="offcanvas offcanvas-end">
             <div class="offcanvas-header border-bottom">
@@ -182,33 +182,32 @@
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" aria-current="page">Accueil</a>
-                  <div class="dropdown-menu p-0">
-                    <div class="d-lg-left">
-                      <div class="mega-dropdown-column bg-position-center bg-repeat-0 bg-size-cover rounded-3 rounded-end-0" style="background-image: url(landingassets/img/landings.jpg); margin: -1px;"></div>
-                      <div class="mega-dropdown-column pt-lg-3 pb-lg-4">
-                        <ul class="list-unstyled mb-0">
-                          <li><a href="/home" class="dropdown-item">Accueil 1</a></li>
-                          <li><a href="/portal" class="dropdown-item">Accueil 2</a></li>
-                          
-                        </ul>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </li>
                 
-                
-                <li class="nav-item">
-                  <a href="/event" class="nav-link">Créer un événement</a>
+              <li class="nav-item">
+                  <a href="/portal" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
-                  <a href="/eventlist" class="nav-link">Gérer mes évenements</a>
+                  <a href="/apropos" class="nav-link">A propos</a>
                 </li>
+                <li class="nav-item">
+                  <a href="/archives" class="nav-link">Archives</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/contact" class="nav-link">Contact</a>
+                </li>
+                
               </ul>
+              
+                
+            
             </div>
+            
             <div class="offcanvas-header border-top">
+            <a href="/login" class="btn btn-dark w-100" target="_blank" rel="noopener">
+                
+                Organiser un événement
+              </a>
+              &nbsp;&nbsp;
               <a href="/login" class="btn btn-danger w-100" target="_blank" rel="noopener">
                 
                 Se Connecter
@@ -219,6 +218,10 @@
           <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <a href="/login" class="btn btn-dark btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+                
+                Organiser un événement
+              </a> &nbsp;&nbsp;
           <a href="/login" class="btn btn-danger btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
            Se Connecter
           </a>
@@ -227,77 +230,52 @@
 
 	  @yield('content')
 
+      </br></br>
 
-      <!-- Hero slider + BG parallax -->
-      
-
-
-
-    <!-- Footer -->
-    <footer class="footer dark-mode bg-dark pt-5 pb-4 pb-lg-5">
-      <div class="container pt-lg-4">
-        <div class="row pb-5">
-          <div class="col-lg-4 col-md-6">
-            <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
-              <img src="landingassets/img/logo2.jpg" width="47" alt="Silicon">
-              ESPACE SHOW
-            </div>
-            <form class="needs-validation" novalidate>
-              <label for="subscr-email" class="form-label">Subscribe to our newsletter</label>
-              <div class="input-group">
-                <input type="email" id="subscr-email" class="form-control rounded-start ps-5" placeholder="Your email" required>
-                <i class="bx bx-envelope fs-lg text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
-                <div class="invalid-tooltip position-absolute top-100 start-0">Please provide a valid email address.</div>
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-              </div>
-            </form>
-          </div>
-          <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
-            <div id="footer-links" class="row">
-              <div class="col-lg-4">
-                <h6 class="mb-2">
-                  <a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2" data-bs-toggle="collapse">Useful Links</a>
-                </h6>
-                <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
-                  <ul class="nav flex-column pb-lg-1 mb-lg-3">
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Services</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Case Studies</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">About Us</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">News &amp; Insights</a></li>
-                  </ul>
-                  <ul class="nav flex-column mb-2 mb-lg-0">
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms &amp; Conditions</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-3">
-                <h6 class="mb-2">
-                  <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2" data-bs-toggle="collapse">Socials</a>
-                </h6>
-                <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
-                  <ul class="nav flex-column mb-2 mb-lg-0">
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Facebook</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">LinkedIn</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Twitter</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Instagram</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
-                <h6 class="mb-2">Contact Us</h6>
-                <a href="mailto:email@example.com" class="fw-medium">email@example.com</a>
-              </div>
-            </div>
-          </div>
+<footer class="footer dark-mode bg-dark pt-5 pb-4 pb-lg-5">
+      <div class="container text-center pt-lg-3">
+        
+        <ul class="nav justify-content-center pt-3 pb-4 pb-lg-5">
+          <li class="nav-item"><a href="#" class="nav-link">Conditions d'utilisation</a></li>
+          |
+          <li class="nav-item"><a href="#" class="nav-link">Mentions légales</a></li>
+          |
+          <li class="nav-item"><a href="#" class="nav-link">Politique de confidentialité</a></li>
+          
+        </ul>
+        <!--<div class="d-flex flex-column flex-sm-row justify-content-center">
+          <a href="#" class="btn btn-primary shadow-primary btn-lg me-sm-4 mb-3">Buy access pass</a>
+          <a href="#" class="btn btn-outline-light btn-lg mb-3">
+            <i class="bx bx-calendar-check fs-xl me-2 ms-n1"></i>
+            Go to marketplace
+          </a>
+        </div>-->
+        <div class="d-flex justify-content-center pt-4 mt-lg-3">
+          <a href="#" class="btn btn-icon btn-secondary btn-facebook mx-2">
+            <i class="bx bxl-facebook"></i>
+          </a>
+          <a href="#" class="btn btn-icon btn-secondary btn-instagram mx-2">
+            <i class="bx bxl-instagram"></i>
+          </a>
+          <a href="#" class="btn btn-icon btn-secondary btn-twitter mx-2">
+            <i class="bx bxl-twitter"></i>
+          </a>
+          <a href="#" class="btn btn-icon btn-secondary btn-youtube mx-2">
+            <i class="bx bxl-youtube"></i>
+          </a>
         </div>
-        <p class="nav d-block fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
-          <span class="text-light opacity-50">&copy; Tous droits réservés. </span>
-          <a class="nav-link d-inline-block p-0" href="https://createx.studio/" target="_blank" rel="noopener">ESPACE SHOW</a>
+        <p class="nav d-block fs-sm text-center pt-5 mt-lg-4 mb-0">
+          <span class="text-light opacity-50">&copy; Tous droits réservés.  </span>
+          <a class="nav-link d-inline-block p-0" href="" target="_blank" rel="noopener">ESPACE SHOW 2023</a>
         </p>
       </div>
     </footer>
+
+
+    
+
+<!-- Footer -->
+
 
 
     <!-- Back to top button -->
@@ -308,17 +286,23 @@
 
 
     <!-- Vendor Scripts -->
-    <script src="landingassets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="landingassets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="landingassets/vendor/jarallax/dist/jarallax.min.js"></script>
-    <script src="landingassets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="{{asset('landingassets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('landingassets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js')}}"></script>
+    <script src="{{asset('landingassets/vendor/parallax-js/dist/parallax.min.js')}}"></script>
+    <script src="{{asset('landingassets/vendor/rellax/rellax.min.js')}}"></script>
+    <script src="{{asset('landingassets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('landingassets/vendor/lightgallery/lightgallery.min.js')}}"></script>
+    <script src="{{asset('landingassets/vendor/lightgallery/plugins/video/lg-video.min.js')}}"></script>
 
     <!-- Main Theme Script -->
-    <script src="landingassets/js/theme.min.js"></script>
+    <script src="{{asset('landingassets/js/theme.min.js')}}"></script>
   </body>
-  
+
+<!-- Mirrored from silicon.createx.studio/landing-saas-v3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jan 2023 12:16:38 GMT -->
 </html>
 
+
+   
 
 
 
