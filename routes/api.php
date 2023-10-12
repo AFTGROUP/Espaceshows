@@ -31,19 +31,8 @@ Route::middleware(['api'])->group(function ($router) {
 
     Route::get('/allRoles', [RegistrationController::class, 'allRoles'])->name('allRoles');
     Route::post('/selectRole', [RegistrationController::class, 'selectRole'])->name('selectRole');
-    Route::post('register', [RegistrationController::class, 'register']);//Inscription
+    Route::post('register', [RegistrationController::class, 'register']); //Inscription
 
-  Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
- //   Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
-   // Route::post('password/email', [ForgotPasswordController::class, 'forgot']);
-  //  Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
-
-   // Route::patch('user/profile', [UserController::class, 'updateProfile']);
+    Route::post('/confirmAccount', [RegistrationController::class, 'confirmAccount'])->name('confirmAccount'); //Confirmation de compte par otp
+    Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
 });
-
-
-/**
- * Liste de tous les utilisateurs
- */
-
- Route::get('/allUsers', [RegistrationController::class, 'allUsers']);

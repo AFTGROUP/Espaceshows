@@ -17,6 +17,7 @@ use OpenApi\Annotations as OA;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegistrationRequest;
+use Ichtrojan\Otp\Models\Otp as ModelsOtp;
 
 class RegistrationController extends Controller
 {
@@ -121,6 +122,52 @@ class RegistrationController extends Controller
         return $this->respond($temporaryToken, 'Rôle choisi avec succès.');
     }
 
+    /**
+     * Enregistrement de l'utilisateur avec vérification temporaire.
+     *
+     * Cette route permet à un utilisateur de s'inscrire et de lier son rôle
+     * via un token temporaire. Elle génère également un code OTP et l'envoie à l'utilisateur.
+     *
+     * @OA\Post(
+     *     path="/api/register",
+     *     summary="Enregistrement de l'utilisateur avec vérification temporaire",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="nom", type="string", description="Nom de l'utilisateur"),
+     *             @OA\Property(property="prenom", type="string", description="Prénom de l'utilisateur"),
+     *             @OA\Property(property="email", type="string", description="Adresse e-mail de l'utilisateur"),
+     *             @OA\Property(property="telephone", type="string", description="Numéro de téléphone de l'utilisateur"),
+     *             @OA\Property(property="password", type="string", description="Mot de passe de l'utilisateur (doit être confirmé)"),
+     *             @OA\Property(property="temporary_token", type="string", description="Token temporaire de vérification")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Utilisateur enregistré avec succès",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Utilisateur enregistré avec succès")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Erreurs de validation",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Échec de la validation des données"),
+     *             @OA\Property(property="errors", type="object", description="Liste des erreurs de validation")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Erreur interne du serveur",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Erreur interne du serveur")
+     *         )
+     *     )
+     * )
+     */
+
     public function register(RegistrationRequest $request)
     {
         $attributes = $request->getAttributes();
@@ -141,17 +188,114 @@ class RegistrationController extends Controller
 
         TemporyData::clearTemporaryData($temporaryToken);
 
+        $identifier = $user->id;
+        $mail = $user->email;
+        $this->generateOtp($identifier, $mail);
+
+        return $this->respondWithMessage('User successfully created');
+    }
+
+
+    /**
+     * Générer un code OTP et l'envoyer à l'utilisateur.
+     *
+     * Cette route génère un code OTP (One Time Password) et l'envoie à l'utilisateur
+     * par e-mail, SMS ou tout autre moyen de communication.
+     *
+     * @OA\Post(
+     *     path="/api/generateOtp",
+     *     summary="Générer un code OTP et l'envoyer à l'utilisateur",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="identifier", type="string", description="Identifiant de l'utilisateur"),
+     *             @OA\Property(property="mail", type="string", description="Adresse e-mail de l'utilisateur")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Code OTP généré et envoyé avec succès",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Code OTP généré et envoyé avec succès")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Erreur interne du serveur",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Erreur interne du serveur")
+     *         )
+     *     )
+     * )
+     */
+
+    public function generateOtp($identifier, $mail)
+    {
+
         //Génération du code otp en son envoi à l'utilisateur
 
         $otp = new Otp();
-        $otpCode = $otp->generate($user->id, 5, 10);
+        $otpCode = $otp->generate($identifier, 5, 10);
 
         $CodeOtp = $otpCode->token;
 
         // Envoyez le code OTP à l'utilisateur (par e-mail, SMS, etc.)
-        Mail::to($user->email)
+        Mail::to($mail)
             ->send(new SendOtp($CodeOtp));
+    }
 
-        return $this->respondWithMessage('User successfully created');
+
+    /**
+     * @OA\Post(
+     *     path="/api/confirmAccount",
+     *     summary="Confirmer un compte utilisateur avec un code OTP",
+     *     description="Confirmez un compte utilisateur en vérifiant un code OTP avec l'identifiant associé.",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Les données nécessaires pour confirmer le compte utilisateur",
+     *         @OA\JsonContent(
+     *             required={"token"},
+     *             @OA\Property(
+     *                 property="token",
+     *                 type="string",
+     *                 description="Le code OTP à vérifier."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Validation réussie du code OTP",
+     *         @OA\JsonContent(
+     *             type="boolean",
+     *             example=true,
+     *             description="Indique si la validation du code OTP a réussi."
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Échec de validation du code OTP",
+     *         @OA\JsonContent(
+     *             type="boolean",
+     *             example=false,
+     *             description="Indique si la validation du code OTP a échoué."
+     *         )
+     *     )
+     * )
+     */
+
+
+    public function confirmAccount(Request $request)
+    {
+
+
+        $token = $request->token;
+        $identifier = ModelsOtp::where('token', $token)->first()->identifier;
+
+        $otp = new Otp();
+        $otpVerify =  $otp->validate($identifier, $token);
+
+        return response()->json($otpVerify);
     }
 }

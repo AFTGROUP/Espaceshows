@@ -232,6 +232,226 @@
                     }
                 }
             }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Enregistrement de l'utilisateur avec vérification temporaire",
+                "description": "Enregistrement de l'utilisateur avec vérification temporaire.\n\nCette route permet à un utilisateur de s'inscrire et de lier son rôle\nvia un token temporaire. Elle génère également un code OTP et l'envoie à l'utilisateur.",
+                "operationId": "872725de3f20bddf07c2848a82e46b80",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "description": "Nom de l'utilisateur",
+                                        "type": "string"
+                                    },
+                                    "prenom": {
+                                        "description": "Prénom de l'utilisateur",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Adresse e-mail de l'utilisateur",
+                                        "type": "string"
+                                    },
+                                    "telephone": {
+                                        "description": "Numéro de téléphone de l'utilisateur",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Mot de passe de l'utilisateur (doit être confirmé)",
+                                        "type": "string"
+                                    },
+                                    "temporary_token": {
+                                        "description": "Token temporaire de vérification",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Utilisateur enregistré avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Utilisateur enregistré avec succès"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreurs de validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Échec de la validation des données"
+                                        },
+                                        "errors": {
+                                            "description": "Liste des erreurs de validation",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur interne du serveur"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/generateOtp": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Générer un code OTP et l'envoyer à l'utilisateur",
+                "description": "Générer un code OTP et l'envoyer à l'utilisateur.\n\nCette route génère un code OTP (One Time Password) et l'envoie à l'utilisateur\npar e-mail, SMS ou tout autre moyen de communication.",
+                "operationId": "ebeeb864c0dcb2188eff7d0f21e1a2c5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "identifier": {
+                                        "description": "Identifiant de l'utilisateur",
+                                        "type": "string"
+                                    },
+                                    "mail": {
+                                        "description": "Adresse e-mail de l'utilisateur",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Code OTP généré et envoyé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Code OTP généré et envoyé avec succès"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur interne du serveur"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/confirmAccount": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Confirmer un compte utilisateur avec un code OTP",
+                "description": "Confirmez un compte utilisateur en vérifiant un code OTP avec l'identifiant associé.",
+                "operationId": "a6f8ae9bd4a6f6fee0ff1e87d5823beb",
+                "requestBody": {
+                    "description": "Les données nécessaires pour confirmer le compte utilisateur",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "description": "Le code OTP à vérifier.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Validation réussie du code OTP",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Indique si la validation du code OTP a réussi.",
+                                    "type": "boolean"
+                                },
+                                "example": true
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Échec de validation du code OTP",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Indique si la validation du code OTP a échoué.",
+                                    "type": "boolean"
+                                },
+                                "example": false
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
