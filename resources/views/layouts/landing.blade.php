@@ -203,7 +203,7 @@
             </div>
             
             <div class="offcanvas-header border-top">
-            <a href="/login" class="btn btn-dark w-100" target="_blank" rel="noopener">
+            <a href="/creerevenement" class="btn btn-dark w-100" target="_blank" rel="noopener">
                 
                 Organiser un événement
               </a>
@@ -218,7 +218,7 @@
           <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a href="/login" class="btn btn-dark btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+          <a href="/creerevenement" class="btn btn-dark btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 
                 Organiser un événement
               </a> &nbsp;&nbsp;
@@ -266,7 +266,7 @@
         </div>
         <p class="nav d-block fs-sm text-center pt-5 mt-lg-4 mb-0">
           <span class="text-light opacity-50">&copy; Tous droits réservés.  </span>
-          <a class="nav-link d-inline-block p-0" href="" target="_blank" rel="noopener">ESPACE SHOW 2023</a>
+          <a class="nav-link d-inline-block p-0" href="" target="_blank" rel="noopener">Made by AFT GROUP</a>
         </p>
       </div>
     </footer>

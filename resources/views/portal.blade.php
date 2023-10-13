@@ -314,6 +314,14 @@
                         <i class="bx bx-like fs-xl me-1"></i>
                         
                       </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
                     </div>
                   </article>
                 </div>
@@ -345,6 +353,14 @@
                         <i class="bx bx-like fs-xl me-1"></i>
                         
                       </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
                     </div>
                   </article>
                 </div>
@@ -376,6 +392,14 @@
                         <i class="bx bx-like fs-xl me-1"></i>
                         
                       </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
                     </div>
                   </article>
                 </div>
@@ -407,6 +431,14 @@
                         <i class="bx bx-like fs-xl me-1"></i>
                         
                       </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
                     </div>
                   </article>
                 </div>
@@ -438,6 +470,14 @@
                         <i class="bx bx-like fs-xl me-1"></i>
                         
                       </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
                     </div>
                   </article>
                 </div>
@@ -446,7 +486,7 @@
               <!-- Pagination (bullets) -->
               <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
             </div>
-            <a href="portfolio-courses.html" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
+            <a href="/evenements" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
              Voir tous les événements
               <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
             </a>
@@ -530,172 +570,238 @@
         <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
 
           <!-- Item -->
-          <div class="col pb-3">
-            <article class="card border-0 shadow-sm h-100">
-              <div class="position-relative">
-                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
-                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                  <i class="bx bx-bookmark"></i>
-                </a>
-                <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
-              </div>
-              <div class="card-body pb-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Grand Concert</a>
-                  <span class="fs-sm text-muted">May 19, 2021</span>
+          <div class="swiper-slide h-auto pb-3">
+                  <article class="card h-100 border-0 shadow-sm mx-2">
+                    <div class="position-relative">
+                      <a href="portfolio-single-course.html" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                      <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Ven 20 Dec 2023</span>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                      </a>
+                      <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
+                    </div>
+                    <div class="card-body pb-3">
+                      <h3 class="h5 mb-2">
+                        <a href="portfolio-single-course.html">Grand Concert</a>
+                      </h3>
+                      <p class="fs-sm mb-2">Cotonou, Palais des Congrès</p>
+                      <p class="fs-lg fw-semibold text-primary mb-0">18h</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                      <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
+                    </div>
+                  </article>
                 </div>
-                <h3 class="h5 mb-0">
-                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                </h3>
-              </div>
-              <div class="card-footer py-4">
-                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                  
-                  Jerome Bell
-                </a>
-              </div>
-            </article>
-          </div>
 
           <!-- Item -->
-          <div class="col pb-3">
-            <article class="card border-0 shadow-sm h-100">
-              <div class="position-relative">
-                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
-                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                  <i class="bx bx-bookmark"></i>
-                </a>
-                <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
-              </div>
-              <div class="card-body pb-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Grand Concert</a>
-                  <span class="fs-sm text-muted">May 19, 2021</span>
+          <div class="swiper-slide h-auto pb-3">
+                  <article class="card h-100 border-0 shadow-sm mx-2">
+                    <div class="position-relative">
+                      <a href="portfolio-single-course.html" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                      <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Ven 20 Dec 2023</span>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                      </a>
+                      <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
+                    </div>
+                    <div class="card-body pb-3">
+                      <h3 class="h5 mb-2">
+                        <a href="portfolio-single-course.html">Grand Concert</a>
+                      </h3>
+                      <p class="fs-sm mb-2">Cotonou, Palais des Congrès</p>
+                      <p class="fs-lg fw-semibold text-primary mb-0">18h</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                      <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
+                    </div>
+                  </article>
                 </div>
-                <h3 class="h5 mb-0">
-                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                </h3>
-              </div>
-              <div class="card-footer py-4">
-                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                  
-                  Jerome Bell
-                </a>
-              </div>
-            </article>
-          </div>
 
           <!-- Item -->
-          <div class="col pb-3">
-            <article class="card border-0 shadow-sm h-100">
-              <div class="position-relative">
-                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
-                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                  <i class="bx bx-bookmark"></i>
-                </a>
-                <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
-              </div>
-              <div class="card-body pb-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Grand Concert</a>
-                  <span class="fs-sm text-muted">May 19, 2021</span>
+          <div class="swiper-slide h-auto pb-3">
+                  <article class="card h-100 border-0 shadow-sm mx-2">
+                    <div class="position-relative">
+                      <a href="portfolio-single-course.html" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                      <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Ven 20 Dec 2023</span>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                      </a>
+                      <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
+                    </div>
+                    <div class="card-body pb-3">
+                      <h3 class="h5 mb-2">
+                        <a href="portfolio-single-course.html">Grand Concert</a>
+                      </h3>
+                      <p class="fs-sm mb-2">Cotonou, Palais des Congrès</p>
+                      <p class="fs-lg fw-semibold text-primary mb-0">18h</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                      <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
+                    </div>
+                  </article>
                 </div>
-                <h3 class="h5 mb-0">
-                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                </h3>
-              </div>
-              <div class="card-footer py-4">
-                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                  
-                  Jerome Bell
-                </a>
-              </div>
-            </article>
-          </div>
 
           <!-- Item -->
-          <div class="col pb-3">
-            <article class="card border-0 shadow-sm h-100">
-              <div class="position-relative">
-                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
-                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                  <i class="bx bx-bookmark"></i>
-                </a>
-                <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
-              </div>
-              <div class="card-body pb-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Grand Concert</a>
-                  <span class="fs-sm text-muted">May 19, 2021</span>
+          <div class="swiper-slide h-auto pb-3">
+                  <article class="card h-100 border-0 shadow-sm mx-2">
+                    <div class="position-relative">
+                      <a href="portfolio-single-course.html" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                      <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Ven 20 Dec 2023</span>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                      </a>
+                      <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
+                    </div>
+                    <div class="card-body pb-3">
+                      <h3 class="h5 mb-2">
+                        <a href="portfolio-single-course.html">Grand Concert</a>
+                      </h3>
+                      <p class="fs-sm mb-2">Cotonou, Palais des Congrès</p>
+                      <p class="fs-lg fw-semibold text-primary mb-0">18h</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                      <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
+                    </div>
+                  </article>
                 </div>
-                <h3 class="h5 mb-0">
-                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                </h3>
-              </div>
-              <div class="card-footer py-4">
-                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                  
-                  Jerome Bell
-                </a>
-              </div>
-            </article>
-          </div>
 
           <!-- Item -->
-          <div class="col pb-3">
-            <article class="card border-0 shadow-sm h-100">
-              <div class="position-relative">
-                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
-                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                  <i class="bx bx-bookmark"></i>
-                </a>
-                <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
-              </div>
-              <div class="card-body pb-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Grand Concert</a>
-                  <span class="fs-sm text-muted">May 19, 2021</span>
+          <div class="swiper-slide h-auto pb-3">
+                  <article class="card h-100 border-0 shadow-sm mx-2">
+                    <div class="position-relative">
+                      <a href="portfolio-single-course.html" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                      <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Ven 20 Dec 2023</span>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                      </a>
+                      <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
+                    </div>
+                    <div class="card-body pb-3">
+                      <h3 class="h5 mb-2">
+                        <a href="portfolio-single-course.html">Grand Concert</a>
+                      </h3>
+                      <p class="fs-sm mb-2">Cotonou, Palais des Congrès</p>
+                      <p class="fs-lg fw-semibold text-primary mb-0">18h</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                      <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
+                    </div>
+                  </article>
                 </div>
-                <h3 class="h5 mb-0">
-                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                </h3>
-              </div>
-              <div class="card-footer py-4">
-                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                  
-                  Jerome Bell
-                </a>
-              </div>
-            </article>
-          </div>
 
           <!-- Item -->
-          <div class="col pb-3">
-            <article class="card border-0 shadow-sm h-100">
-              <div class="position-relative">
-                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
-                <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                  <i class="bx bx-bookmark"></i>
-                </a>
-                <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
-              </div>
-              <div class="card-body pb-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Grand Concert</a>
-                  <span class="fs-sm text-muted">May 19, 2021</span>
+          <div class="swiper-slide h-auto pb-3">
+                  <article class="card h-100 border-0 shadow-sm mx-2">
+                    <div class="position-relative">
+                      <a href="portfolio-single-course.html" class="d-block position-absolute w-100 h-100 top-0 start-0"></a>
+                      <span class="badge bg-danger position-absolute top-0 start-0 zindex-2 mt-3 ms-3">Ven 20 Dec 2023</span>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Save to Favorites">
+                        <i class="bx bx-bookmark"></i>
+                      </a>
+                      <img src="landingassets/img/event.jpg" class="card-img-top" alt="Image">
+                    </div>
+                    <div class="card-body pb-3">
+                      <h3 class="h5 mb-2">
+                        <a href="portfolio-single-course.html">Grand Concert</a>
+                      </h3>
+                      <p class="fs-sm mb-2">Cotonou, Palais des Congrès</p>
+                      <p class="fs-lg fw-semibold text-primary mb-0">18h</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center fs-sm text-muted py-4">
+                      <div class="d-flex align-items-center me-4">
+                        <i class="bx bx-time fs-xl me-1"></i>
+                        
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-like fs-xl me-1"></i>
+                        
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="d-flex align-items-center">
+                      <a href="/ticket" class="btn btn-danger w-100" target="_blank" rel="noopener">Réserver un ticket</a>
+                        
+                      </div>
+                      
+                    </div>
+                  </article>
                 </div>
-                <h3 class="h5 mb-0">
-                  <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                </h3>
-              </div>
-              <div class="card-footer py-4">
-                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                  
-                  Jerome Bell
-                </a>
-              </div>
-            </article>
-          </div>
 
           <!-- Item -->
           
