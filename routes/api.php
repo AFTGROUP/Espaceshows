@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RegistrationController;
+use App\Http\Controllers\API\ReservationController;
+
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,5 +41,14 @@ Route::middleware(['api'])->group(function ($router) {
   //  Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
 
    // Route::patch('user/profile', [UserController::class, 'updateProfile']);
+
+
+   Route::get('/reservations', [ReservationController::class, 'index']);//reservation 
+   Route::get('/reservations/{id}', [ReservationController::class, 'show']);//reservation par id
+   Route::post('/reservations', [ReservationController::class, 'store']);
+   Route::put('/reservations/{id}', [ReservationController::class, 'update']);
+   Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
+   
+
 });
 
