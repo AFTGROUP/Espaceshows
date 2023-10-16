@@ -4,10 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\ApiCode;
 use Illuminate\Http\Request;
-
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\Controller;
 
 
 class AuthController extends Controller
@@ -69,7 +68,7 @@ class AuthController extends Controller
 
             $user = User::where('email', $credentials['email'])->first();
 
-            if($user->email_verified_at === NULL){
+            if( isset($user) && $user->email_verified_at === NULL){
                 return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_NOT_VERIFIED);
             }
 

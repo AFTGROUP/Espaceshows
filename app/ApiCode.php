@@ -26,4 +26,6 @@ class ApiCode {
     public const INVALID_EMAIL_VERIFICATION_URL = 254;
     public const INVALID_RESET_PASSWORD_TOKEN = 255;
     public const ACCOUNT_NOT_VERIFIED = 256;
+    public const RESOURCE_NOT_FOUND = 257;
+
 }
