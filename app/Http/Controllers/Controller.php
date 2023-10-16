@@ -95,4 +95,23 @@ class Controller extends BaseController
     {
         return $this->respondWithError($api_code, 404);
     }
+
+    /**
+     * Indique une erreur interne du serveur. Vous pouvez ajouter une méthode
+     */
+
+    public function respondInternalServerError($api_code)
+    {
+        return $this->respondWithError($api_code, 500);
+    }
+
+
+    /**
+     *  La requête est correcte sur le plan de la syntaxe, mais
+     * elle ne peut pas être traitée en raison d'erreurs de validation
+     */
+    public function respondUnprocessableEntity($api_code)
+    {
+        return $this->respondWithError($api_code, 422);
+    }
 }
