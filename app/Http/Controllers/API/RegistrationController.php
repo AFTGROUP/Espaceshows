@@ -9,15 +9,16 @@ use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use App\Mail\SendOtp;
+use Ichtrojan\Otp\Otp;
 use App\Models\OtpCode;
 use App\Models\TemporyData;
 use Illuminate\Http\Request;
-use Ichtrojan\Otp\Otp;
 use OpenApi\Annotations as OA;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegistrationRequest;
 use Ichtrojan\Otp\Models\Otp as ModelsOtp;
+use Illuminate\Validation\ValidationException;
 
 class RegistrationController extends Controller
 {
@@ -82,7 +83,7 @@ class RegistrationController extends Controller
      *         )
      *     ),
      *     @OA\Response(
-     *         response="400",
+     *         response="422",
      *         description="Erreur de validation.",
      *         @OA\JsonContent(
      *             type="object",
@@ -100,26 +101,29 @@ class RegistrationController extends Controller
 
     public function selectRole(Request $request)
     {
-        $validated = $request->validate([
-            'role_id' => 'required|exists:roles,id',
-        ]);
+        try{
+            $validated = $request->validate([
+                'role_id' => 'required|exists:roles,id',
+            ]);
 
-        if (!$validated['role_id']) {
-            return $this->respondBadRequest(ApiCode::VALIDATION_ERROR);
+            // Générez un token temporaire (peut être un UUID ou un autre identifiant unique)
+            $temporaryToken = uniqid();
+
+            // Associez le token temporaire au rôle choisi
+            $temporaryData = [
+                'role_id' => $validated['role_id'],
+            ];
+
+            // Stockez le token temporaire et les données associées dans une base de données temporaire
+            TemporyData::storeTemporaryData($temporaryToken, $temporaryData);
+
+            return $this->respond($temporaryToken, 'Rôle choisi avec succès.');
         }
+        catch (ValidationException $e) {
 
-        // Générez un token temporaire (peut être un UUID ou un autre identifiant unique)
-        $temporaryToken = uniqid();
+            return $this->respondUnprocessableEntity(ApiCode::VALIDATION_ERROR);
 
-        // Associez le token temporaire au rôle choisi
-        $temporaryData = [
-            'role_id' => $validated['role_id'],
-        ];
-
-        // Stockez le token temporaire et les données associées dans une base de données temporaire
-        TemporyData::storeTemporaryData($temporaryToken, $temporaryData);
-
-        return $this->respond($temporaryToken, 'Rôle choisi avec succès.');
+        }
     }
 
     /**
@@ -170,29 +174,30 @@ class RegistrationController extends Controller
 
     public function register(RegistrationRequest $request)
     {
-        $attributes = $request->getAttributes();
+            $attributes = $request->getAttributes();
 
-        $user =  User::create($attributes);
+            $user =  User::create($attributes);
 
-        // Récupérez les données associées au token temporaire depuis la base de données temporaire
-        $temporaryToken =  $attributes['temporary_token'];
+            // Récupérez les données associées au token temporaire depuis la base de données temporaire
+            $temporaryToken =  $attributes['temporary_token'];
 
-        $temporaryData = TemporyData::retrieveTemporaryData($temporaryToken);
+            $temporaryData = TemporyData::retrieveTemporaryData($temporaryToken);
 
-        if ($temporaryData) {
+            if ($temporaryData) {
 
-            $user->roles()->attach($temporaryData->role_id);
-        }
+                $user->roles()->attach($temporaryData->role_id);
+            }
 
-        //Effacer le token temporaire
+            //Effacer le token temporaire
 
-        TemporyData::clearTemporaryData($temporaryToken);
+            TemporyData::clearTemporaryData($temporaryToken);
 
-        $identifier = $user->id;
-        $mail = $user->email;
-        $this->generateOtp($identifier, $mail);
+            //Générer un code otp et l'envoyer à l'utilisateur
+            $identifier = $user->id;
+            $mail = $user->email;
+            $this->generateOtp($identifier, $mail);
 
-        return $this->respondWithMessage('User successfully created');
+            return $this->respondWithMessage('User successfully created');
     }
 
 
@@ -288,8 +293,6 @@ class RegistrationController extends Controller
 
     public function confirmAccount(Request $request)
     {
-
-
         $token = $request->token;
         $identifier = ModelsOtp::where('token', $token)->first()->identifier;
 

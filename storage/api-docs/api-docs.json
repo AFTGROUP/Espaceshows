@@ -72,7 +72,23 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "description": "Error message",
+                                            "description": "Unauthorized. Invalid credentials.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Unprocessable Entity. Validation error occurred.",
                                             "type": "string"
                                         }
                                     },
@@ -214,7 +230,7 @@
                             }
                         }
                     },
-                    "400": {
+                    "422": {
                         "description": "Erreur de validation.",
                         "content": {
                             "application/json": {
