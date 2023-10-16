@@ -28,7 +28,7 @@ class RegistrationRequest extends FormRequest
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:users',
-            'telephone' => 'required|string',
+            'telephone' => 'required|string|unique:users,telephone',
             'password' => 'required|string|min:8|max:25|confirmed',
             'temporary_token' => 'required'
         ];

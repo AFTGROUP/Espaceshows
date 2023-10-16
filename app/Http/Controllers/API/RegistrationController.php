@@ -299,6 +299,15 @@ class RegistrationController extends Controller
         $otp = new Otp();
         $otpVerify =  $otp->validate($identifier, $token);
 
+         if($otpVerify->status === true){
+            $user = User::findOrFail($identifier);
+            $user->email_verified_at = now();
+            $user->save();
+         }
+
+
         return response()->json($otpVerify);
+
+
     }
 }

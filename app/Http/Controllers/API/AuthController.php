@@ -6,6 +6,7 @@ use App\ApiCode;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
 
@@ -65,6 +66,12 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|string|max:25'
             ]);
+
+            $user = User::where('email', $credentials['email'])->first();
+
+            if($user->email_verified_at === NULL){
+                return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_NOT_VERIFIED);
+            }
 
             if (!$token = auth()->attempt($credentials)) {
                 return $this->respondUnAuthorizedRequest(ApiCode::INVALID_CREDENTIALS);

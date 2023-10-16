@@ -487,6 +487,41 @@
                     }
                 },
                 "type": "object"
+            },
+            "ApiCode": {
+                "title": "Api Codes",
+                "description": "Descriptions for API error codes",
+                "properties": {
+                    "SOMETHING_WENT_WRONG": {
+                        "description": "250: Something went wrong.",
+                        "type": "integer"
+                    },
+                    "INVALID_CREDENTIALS": {
+                        "description": "251: Invalid credentials.",
+                        "type": "integer"
+                    },
+                    "VALIDATION_ERROR": {
+                        "description": "252: Validation error.",
+                        "type": "integer"
+                    },
+                    "EMAIL_ALREADY_VERIFIED": {
+                        "description": "253: Email already verified.",
+                        "type": "integer"
+                    },
+                    "INVALID_EMAIL_VERIFICATION_URL": {
+                        "description": "254: Invalid email verification URL.",
+                        "type": "integer"
+                    },
+                    "INVALID_RESET_PASSWORD_TOKEN": {
+                        "description": "255: Invalid reset password token.",
+                        "type": "integer"
+                    },
+                    "ACCOUNT_NOT_VERIFIED": {
+                        "description": "256: Account not verified.",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
             }
         }
     }
