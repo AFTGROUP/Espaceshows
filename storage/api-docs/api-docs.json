@@ -72,7 +72,23 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "description": "Error message",
+                                            "description": "Unauthorized. Invalid credentials.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Unprocessable Entity. Validation error occurred.",
                                             "type": "string"
                                         }
                                     },
@@ -214,7 +230,7 @@
                             }
                         }
                     },
-                    "400": {
+                    "422": {
                         "description": "Erreur de validation.",
                         "content": {
                             "application/json": {
@@ -452,6 +468,146 @@
                     }
                 }
             }
+        },
+        "/api/subscriber": {
+            "post": {
+                "tags": [
+                    "Newsletter"
+                ],
+                "summary": "Subscribe to the newsletter",
+                "operationId": "subscribeToNewsletter",
+                "requestBody": {
+                    "description": "Subscription request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Email address of the subscriber",
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Subscription successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Success message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Validation error message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subscriber/verify/{token}/{email}": {
+            "post": {
+                "tags": [
+                    "Newsletter"
+                ],
+                "summary": "Verify subscriber by token and email",
+                "operationId": "verifySubscriber",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Verification token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "Subscriber's email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Subscriber verified successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Verification successful message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Subscriber not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Subscriber not found message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -468,6 +624,41 @@
                     "name": {
                         "description": "Nom du rôle",
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ApiCode": {
+                "title": "Api Codes",
+                "description": "Descriptions for API error codes",
+                "properties": {
+                    "SOMETHING_WENT_WRONG": {
+                        "description": "250: Something went wrong.",
+                        "type": "integer"
+                    },
+                    "INVALID_CREDENTIALS": {
+                        "description": "251: Invalid credentials.",
+                        "type": "integer"
+                    },
+                    "VALIDATION_ERROR": {
+                        "description": "252: Validation error.",
+                        "type": "integer"
+                    },
+                    "EMAIL_ALREADY_VERIFIED": {
+                        "description": "253: Email already verified.",
+                        "type": "integer"
+                    },
+                    "INVALID_EMAIL_VERIFICATION_URL": {
+                        "description": "254: Invalid email verification URL.",
+                        "type": "integer"
+                    },
+                    "INVALID_RESET_PASSWORD_TOKEN": {
+                        "description": "255: Invalid reset password token.",
+                        "type": "integer"
+                    },
+                    "ACCOUNT_NOT_VERIFIED": {
+                        "description": "256: Account not verified.",
+                        "type": "integer"
                     }
                 },
                 "type": "object"

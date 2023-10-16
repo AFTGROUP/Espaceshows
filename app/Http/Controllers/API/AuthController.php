@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\ApiCode;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\Controller;
 
 
 class AuthController extends Controller
@@ -45,22 +46,43 @@ class AuthController extends Controller
      *         response=401,
      *         description="Unauthorized",
      *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", description="Error message")
+     *             @OA\Property(property="message", type="string", description="Unauthorized. Invalid credentials.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", description="Unprocessable Entity. Validation error occurred.")
      *         )
      *     )
      * )
      */
-
     public function login()
     {
-        $credentials = request()->validate(['email' => 'required|email', 'password' => 'required|string|max:25']);
+        try {
+            $credentials = request()->validate([
+                'email' => 'required|email',
+                'password' => 'required|string|max:25'
+            ]);
 
-        if (!$token = auth()->attempt($credentials)) {
-            return $this->respondUnAuthorizedRequest(ApiCode::INVALID_CREDENTIALS);
+            $user = User::where('email', $credentials['email'])->first();
+
+            if( isset($user) && $user->email_verified_at === NULL){
+                return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_NOT_VERIFIED);
+            }
+
+            if (!$token = auth()->attempt($credentials)) {
+                return $this->respondUnAuthorizedRequest(ApiCode::INVALID_CREDENTIALS);
+            }
+
+            return $this->respondWithToken($token);
+        } catch (ValidationException $e) {
+
+            return $this->respondUnprocessableEntity(ApiCode::VALIDATION_ERROR);
         }
-
-        return $this->respondWithToken($token);
     }
+
 
     private function respondWithToken($token)
     {
