@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\RegistrationController;
-use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\EvenementController;
+use App\Http\Controllers\API\RegistrationController;
+use App\Http\Controllers\API\TypeEvenementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +37,6 @@ Route::middleware(['api'])->group(function ($router) {
 
     Route::post('/confirmAccount', [RegistrationController::class, 'confirmAccount'])->name('confirmAccount'); //Confirmation de compte par otp
     Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
+    Route::post('/evenement', [EvenementController::class, 'store']);
+    Route::post('/type', [TypeEvenementController::class, 'store']);
 });
