@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class TypeEvenementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -33,7 +39,7 @@ class TypeEvenementController extends Controller
  * @OA\Post(
  *     path="/api/type",
  *     summary="Créer un nouveau type d'événement",
- *     tags={"Types d'Événements"},
+ *     tags={"Événements"},
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -45,7 +51,7 @@ class TypeEvenementController extends Controller
  *         description="Type d'événement enregistré avec succès"
  *     ),
  *     @OA\Response(
- *         response="400",
+ *         response="422",
  *         description="Erreurs de validation",
  *         @OA\JsonContent(
  *             @OA\Property(property="Erreurs de validation", type="object", description="Liste des erreurs de validation")
@@ -59,7 +65,7 @@ class TypeEvenementController extends Controller
  *         )
  *     )
  * )
- */ 
+ */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -71,7 +77,7 @@ class TypeEvenementController extends Controller
         if($validator->fails()) {
             return response()->json(['Erreurs de validation' => $validator->errors()], 400);
         }
-    
+
         $type = new TypeEvenement();
         $type->nom = $request->nom;
         $type->save();

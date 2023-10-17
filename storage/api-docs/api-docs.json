@@ -165,6 +165,117 @@
                 ]
             }
         },
+        "/api/evenement": {
+            "post": {
+                "tags": [
+                    "Événements"
+                ],
+                "summary": "Créer un nouvel événement avec des tickets",
+                "operationId": "8bc8e31f765e1f5ab6e8742bc1ca5341",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "description": "Nom de l'événement",
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "pays": {
+                                        "description": "Pays de l'événement",
+                                        "type": "string"
+                                    },
+                                    "ville": {
+                                        "description": "Ville de l'événement",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Description de l'événement",
+                                        "type": "string"
+                                    },
+                                    "date_debut": {
+                                        "description": "Date de début de l'événement",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "date_fin": {
+                                        "description": "Date de fin de l'événement",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "mots_cles": {
+                                        "description": "Mots-clés de l'événement",
+                                        "type": "string"
+                                    },
+                                    "type_ticket": {
+                                        "type": "array",
+                                        "items": {
+                                            "description": "Type de ticket",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "prix_ticket": {
+                                        "type": "array",
+                                        "items": {
+                                            "description": "Prix de chaque ticket",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "nombre_place_disponible": {
+                                        "description": "Nombre de places disponibles",
+                                        "type": "integer"
+                                    },
+                                    "type_evenement_id": {
+                                        "description": "ID du type d'événement associé",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Événement enregistré avec succès"
+                    },
+                    "422": {
+                        "description": "Erreurs de validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Erreurs de validation": {
+                                            "description": "Liste des erreurs de validation",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur interne du serveur"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/AllRoles": {
             "get": {
                 "tags": [
@@ -608,6 +719,69 @@
                     }
                 }
             }
+        },
+        "/api/type": {
+            "post": {
+                "tags": [
+                    "Événements"
+                ],
+                "summary": "Créer un nouveau type d'événement",
+                "operationId": "7457d24253968ec6b3981a9220888c04",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "description": "Nom du type d'événement",
+                                        "type": "string",
+                                        "maxLength": 50
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Type d'événement enregistré avec succès"
+                    },
+                    "422": {
+                        "description": "Erreurs de validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Erreurs de validation": {
+                                            "description": "Liste des erreurs de validation",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur interne du serveur"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -659,6 +833,65 @@
                     "ACCOUNT_NOT_VERIFIED": {
                         "description": "256: Account not verified.",
                         "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Event": {
+                "title": "Event",
+                "description": "Modèle de données pour un événement",
+                "properties": {
+                    "id": {
+                        "description": "ID unique de l'événement",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "code": {
+                        "description": "Code de l'événement",
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "description": "Nom de l'événement",
+                        "type": "string"
+                    },
+                    "pays": {
+                        "description": "Pays de l'événement",
+                        "type": "string"
+                    },
+                    "ville": {
+                        "description": "Ville de l'événement",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description de l'événement",
+                        "type": "string"
+                    },
+                    "photo": {
+                        "description": "URL de la photo de l'événement",
+                        "type": "string"
+                    },
+                    "date_debut": {
+                        "description": "Date de début de l'événement",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "date_fin": {
+                        "description": "Date de fin de l'événement",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "mots_cles": {
+                        "description": "Mots-clés de l'événement",
+                        "type": "string"
+                    },
+                    "nombre_place_disponible": {
+                        "description": "Nombre de places disponibles",
+                        "type": "integer"
+                    },
+                    "type_evenement_id": {
+                        "description": "ID du type d'événement associé",
+                        "type": "string",
+                        "format": "uuid"
                     }
                 },
                 "type": "object"

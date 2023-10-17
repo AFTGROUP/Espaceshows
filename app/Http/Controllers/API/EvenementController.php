@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class EvenementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -56,7 +62,7 @@ class EvenementController extends Controller
  *         description="Événement enregistré avec succès"
  *     ),
  *     @OA\Response(
- *         response="400",
+ *         response="422",
  *         description="Erreurs de validation",
  *         @OA\JsonContent(
  *             @OA\Property(property="Erreurs de validation", type="object", description="Liste des erreurs de validation")
@@ -71,7 +77,7 @@ class EvenementController extends Controller
  *     )
  * )
  */
- 
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -95,7 +101,7 @@ class EvenementController extends Controller
         if($validator->fails()) {
             return response()->json(['Erreurs de validation' => $validator->errors()], 400);
         }
-    
+
         $code = mt_rand(100000, 999999);
 
         $path = $request->file('photo')->store('Photos', 'public');
@@ -112,22 +118,22 @@ class EvenementController extends Controller
         $evenement->nombre_place_disponible = $request->nombre_place_disponible;
         $evenement->type_evenement_id = $request->type_evenement_id;
         $evenement->save();
-    
+
         // Enregistrez les tickets
         $type_tickets = $request->input('type_ticket');
         $prix_tickets = $request->input('prix_ticket');
-    
+
         if (!empty($type_tickets) && is_array($type_tickets) && count($type_tickets) === count($prix_tickets)) {
             foreach ($type_tickets as $key => $type_ticket) {
                 $ticket = new Ticket();
-                $ticket->code = $code; 
+                $ticket->code = $code;
                 $ticket->type_ticket = $type_ticket;
                 $ticket->prix_ticket = $prix_tickets[$key];
                 $ticket->evenement_id = $evenement->id;
                 $ticket->save();
             }
         }
-    
+
         return response()->json(["message" => "Événement enregistré avec succès"], 200);
     }
     /**

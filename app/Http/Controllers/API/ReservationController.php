@@ -17,6 +17,8 @@ class ReservationController extends Controller
         $this->middleware('auth:api');
     }
 
+    
+
     public function index()
     {
         $reservations = Reservation::all();

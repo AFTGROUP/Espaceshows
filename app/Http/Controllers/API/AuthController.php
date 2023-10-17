@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\ApiCode;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 
 class AuthController extends Controller
@@ -147,6 +150,15 @@ class AuthController extends Controller
 
     public function me()
     {
-        return $this->respond(auth()->user());
+        try {
+            return $this->respond(auth()->user());
+        } catch (TokenExpiredException $e) {
+            return $this->respondWithMessage($e->getMessage());
+        } catch (TokenInvalidException $e) {
+            return $this->respondWithMessage($e->getMessage());
+        } catch (JWTException $e) {
+            return $this->respondWithMessage($e->getMessage());
+        }
     }
+
 }

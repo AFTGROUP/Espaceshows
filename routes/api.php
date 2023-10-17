@@ -31,7 +31,6 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('login', [AuthController::class, 'login']); //connexion
     Route::post('logout', [AuthController::class, 'logout']); //Déconnexion
     Route::post('refresh', [AuthController::class, 'refresh']); //Rafraîchir le token
-    Route::get('me', [AuthController::class, 'me'])->middleware('log.route'); //Données utilisateur
 
 
     Route::get('/allRoles', [RegistrationController::class, 'allRoles'])->name('allRoles');
@@ -40,8 +39,7 @@ Route::middleware(['api'])->group(function ($router) {
 
     Route::post('/confirmAccount', [RegistrationController::class, 'confirmAccount'])->name('confirmAccount'); //Confirmation de compte par otp
     Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
-    Route::post('/evenement', [EvenementController::class, 'store']);
-    Route::post('/type', [TypeEvenementController::class, 'store']);
+
 
     // Route::patch('user/profile', [UserController::class, 'updateProfile']);
 });
@@ -63,6 +61,7 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('subscriber_send_email_submit');
 });
 
+
 /**
  * Réservation tickets endpoints
  */
@@ -78,5 +77,26 @@ Route::middleware(['api'])->group(function ($router) {
 
 
 /**
- * Users endpoints
+ * Users profile & others endpoints
  */
+
+
+ Route::middleware(['jwt.auth', 'log.route'])->group(function ($router) {
+
+    Route::get('me', [AuthController::class, 'me'])->middleware('log.route'); //Données utilisateur
+
+
+});
+
+
+
+
+ /**
+  * Evenements endpoints
+  */
+
+  Route::middleware(['api'])->group(function ($router) {
+    Route::post('/evenement', [EvenementController::class, 'store']);
+    Route::post('/type', [TypeEvenementController::class, 'store']);
+
+});
