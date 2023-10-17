@@ -68,3 +68,8 @@ Route::middleware(['api'])->group(function ($router) {
     Route::put('/reservations/{id}', [ReservationController::class, 'update']);
     Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
 });
+
+
+/**
+ * Users endpoints
+ */
