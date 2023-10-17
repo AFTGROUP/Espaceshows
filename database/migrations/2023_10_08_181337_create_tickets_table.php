@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('code');
-            $table->integer('prix');
-            $table->integer('nbre_place');
+            $table->string('type_ticket');
+            $table->integer('prix_ticket');
+            $table->foreignUuid('evenement_id')->constrained('evenements');
             $table->timestamps();
         });
     }

@@ -24,6 +24,11 @@ class RoleSeeder extends Seeder
             ],
 
             [
+                'id' => Str::uuid()->toString(),
+               'nom' => 'organisateur',
+            ],
+
+            [
 
                 'id' => Str::uuid()->toString(),
                 'nom' => 'participant'
