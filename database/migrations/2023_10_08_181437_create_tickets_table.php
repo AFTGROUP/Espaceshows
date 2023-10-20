@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('code');
             //      $table->string('type_ticket');
-            $table->foreignUuid('type_tickets_id')->constrained('type_tickets');
+            $table->foreignUuid('type_ticket_id')->constrained('type_tickets');
             $table->integer('prix_ticket');
             $table->foreignUuid('evenement_id')->constrained('evenements');
             $table->timestamps();
