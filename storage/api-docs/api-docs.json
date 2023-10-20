@@ -836,65 +836,6 @@
                     }
                 },
                 "type": "object"
-            },
-            "Event": {
-                "title": "Event",
-                "description": "Modèle de données pour un événement",
-                "properties": {
-                    "id": {
-                        "description": "ID unique de l'événement",
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "code": {
-                        "description": "Code de l'événement",
-                        "type": "integer"
-                    },
-                    "nom": {
-                        "description": "Nom de l'événement",
-                        "type": "string"
-                    },
-                    "pays": {
-                        "description": "Pays de l'événement",
-                        "type": "string"
-                    },
-                    "ville": {
-                        "description": "Ville de l'événement",
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "Description de l'événement",
-                        "type": "string"
-                    },
-                    "photo": {
-                        "description": "URL de la photo de l'événement",
-                        "type": "string"
-                    },
-                    "date_debut": {
-                        "description": "Date de début de l'événement",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "date_fin": {
-                        "description": "Date de fin de l'événement",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "mots_cles": {
-                        "description": "Mots-clés de l'événement",
-                        "type": "string"
-                    },
-                    "nombre_place_disponible": {
-                        "description": "Nombre de places disponibles",
-                        "type": "integer"
-                    },
-                    "type_evenement_id": {
-                        "description": "ID du type d'événement associé",
-                        "type": "string",
-                        "format": "uuid"
-                    }
-                },
-                "type": "object"
             }
         }
     }

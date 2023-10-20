@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('type_tickets', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('code');
-            $table->string('type_ticket');
-            $table->integer('prix_ticket');
-            $table->foreignUuid('evenement_id')->constrained('evenements');
+            $table->string('nom');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('type_tickets');
     }
 };

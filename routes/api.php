@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EvenementController;
 use App\Http\Controllers\API\TypeEvenementController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,6 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/confirmAccount', [RegistrationController::class, 'confirmAccount'])->name('confirmAccount'); //Confirmation de compte par otp
     Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
 
-
-    // Route::patch('user/profile', [UserController::class, 'updateProfile']);
 });
 
 
@@ -80,15 +79,14 @@ Route::middleware(['api'])->group(function ($router) {
  * Users profile & others endpoints
  */
 
-
- Route::middleware(['jwt.auth', 'log.route'])->group(function ($router) {
-
-    Route::get('me', [AuthController::class, 'me'])->middleware('log.route'); //Données utilisateur
+Route::middleware(['api'])->group(function ($router) {
+    Route::get('me', [UserController::class, 'me'])->middleware('log.route'); //Infos user
+    Route::put('/updateProfil', [UserController::class, 'update'])->name('user.update');                                                                        //modifier le profil
+                                                                           //changer le mot de passe
+                                                                           //changer le mot de passe par email
 
 
 });
-
-
 
 
  /**

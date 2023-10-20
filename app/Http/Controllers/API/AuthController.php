@@ -19,6 +19,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
+
     }
 
 
@@ -148,17 +149,6 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-    public function me()
-    {
-        try {
-            return $this->respond(auth()->user());
-        } catch (TokenExpiredException $e) {
-            return $this->respondWithMessage($e->getMessage());
-        } catch (TokenInvalidException $e) {
-            return $this->respondWithMessage($e->getMessage());
-        } catch (JWTException $e) {
-            return $this->respondWithMessage($e->getMessage());
-        }
-    }
+  
 
 }
