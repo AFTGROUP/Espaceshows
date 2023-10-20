@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nom_utilisateur');
             $table->string('prenom_utilisateur');
             $table->foreign('type_ticket')->references('type_ticket')->on('tickets');
-            $table->enum('mode_paiement', ['FedaPay', 'Kkiapay']);
+            $table->enum('mode_paiement', ['Moov', 'MTN']);
             $table->foreignUuid('user_id')->constrained('users');
             $table->foreignUuid('ticket_id')->constrained('tickets');
             $table->timestamps();
