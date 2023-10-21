@@ -117,9 +117,18 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->logout();
-        return $this->respondWithMessage('User successfully logged out');
+
+        try{
+            auth()->logout();
+            return $this->respondWithMessage('User successfully logged out');
+
+        }
+        catch (JWTException $exception) {
+            return $this->respondInternalServerError(ApiCode::SOMETHING_WENT_WRONG);
+
+        }
     }
+
 
     /**
      * @OA\Post(
@@ -149,6 +158,6 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-  
+
 
 }

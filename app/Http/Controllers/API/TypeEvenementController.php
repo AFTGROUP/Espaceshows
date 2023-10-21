@@ -12,9 +12,10 @@ class TypeEvenementController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('jwt.verify');
+
     }
-    
+
     /**
      * Display a listing of the resource.
      */

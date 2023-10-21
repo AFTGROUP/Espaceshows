@@ -50,10 +50,6 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
-        'CheckJwtToken' => [
-            \App\Http\Middleware\CheckJwtToken::class,
-        ]
-
 
     ];
 
@@ -77,10 +73,13 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'log.route' => LogRoute::class,
-    //   'jwt.auth' => CheckJWTToken::class,
-     //  'CheckJwtToken' => \App\Http\Middleware\CheckJWTToken::class,
-
-
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
 
     ];
+
+    // protected $routeMiddleware = [
+    //     'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+    //     'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+    //     'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
+    //         ];
 }

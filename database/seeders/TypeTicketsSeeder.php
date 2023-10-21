@@ -13,5 +13,6 @@ class TypeTicketsSeeder extends Seeder
     public function run(): void
     {
         //
+        
     }
 }

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('jwt.verify');
+
+    }
+
 
     public function me()
     {
