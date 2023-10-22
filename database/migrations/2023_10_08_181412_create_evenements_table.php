@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('mots_cles');
             $table->integer('nombre_place_disponible');
             $table->foreignUuid('type_evenement_id')->constrained('type_evenements');
+            $table->foreignUuid('user_id')->constrained('users');
             $table->timestamps();
         });
     }

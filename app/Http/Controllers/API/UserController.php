@@ -46,7 +46,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
 
@@ -55,7 +55,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
 
@@ -80,6 +80,8 @@ class UserController extends Controller
 
         try {
             $requestData = $request->all();
+
+            var_dump($requestData);
 
             $validationRules = [];
 
@@ -128,8 +130,15 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+    }
+    public function changePassword(Request $request, $id){
+
+        $requestData = $request->all();
+
+        var_dump($requestData);
+
     }
 }

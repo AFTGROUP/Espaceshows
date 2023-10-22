@@ -80,9 +80,9 @@ Route::middleware(['api'])->group(function ($router) {
 
 Route::middleware(['api'])->group(function ($router) {
     Route::get('me', [UserController::class, 'index'])->middleware('log.route'); //Infos user
-    Route::get('/editProfil/{id}', [UserController::class, 'edit'])->name('user.edit'); //Récupérer les infos utilisateur
-    Route::match(['put', 'patch'], 'updateProfil/{id}', [UserController::class, 'update'])->name('user.update'); //modifier le profil
-    Route::put('change-password', [UserController::class, 'changePassword'])->name('user.change-password'); //changer le mot de passe
+    Route::get('/editProfil/{id}', [UserController::class, 'edit']); //Récupérer les infos utilisateur
+    Route::put( 'updateProfil/{id}', [UserController::class, 'update']); //modifier le profil
+    Route::patch('change-password/{id}', [UserController::class, 'changePassword']); //changer le mot de passe
     //changer le mot de passe par email
 
 
