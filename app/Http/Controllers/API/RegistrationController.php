@@ -238,16 +238,8 @@ class RegistrationController extends Controller
     public function generateOtp($identifier, $mail)
     {
 
-        //Génération du code otp en son envoi à l'utilisateur
+        generateOtp($identifier, $mail);
 
-        $otp = new Otp();
-        $otpCode = $otp->generate($identifier, 5, 10);
-
-        $CodeOtp = $otpCode->token;
-
-        // Envoyez le code OTP à l'utilisateur (par e-mail, SMS, etc.)
-        Mail::to($mail)
-            ->send(new SendOtp($CodeOtp));
     }
 
 

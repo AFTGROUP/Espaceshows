@@ -10,6 +10,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "ichtrojan/laravel-otp": "^1.4",
         "laravel/framework": "^10.10",
+        "laravel/pint": "*",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "marcin-orlowski/laravel-api-response-builder": "^10.0",
@@ -17,7 +18,6 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
@@ -29,12 +29,18 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+
+        "files": [
+            "app/utils/OtpGenerator.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
         }
+
+
     },
     "scripts": {
         "post-autoload-dump": [

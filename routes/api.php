@@ -40,7 +40,6 @@ Route::middleware(['api'])->group(function ($router) {
 
     Route::post('/confirmAccount', [RegistrationController::class, 'confirmAccount'])->name('confirmAccount'); //Confirmation de compte par otp
     Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
-
 });
 
 
@@ -55,9 +54,9 @@ Route::middleware(['api'])->group(function ($router) {
 
     // Message to All Subscriber
 
-    Route::get('/subscriber/all', [AdminSubscriberController::class, 'show_all'])->name('admin_subscribers');
-    Route::get('/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('subscriber_send_email');
-    Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('subscriber_send_email_submit');
+    // Route::get('/subscriber/all', [AdminSubscriberController::class, 'show_all'])->name('admin_subscribers');
+    // Route::get('/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('subscriber_send_email');
+    // Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('subscriber_send_email_submit');
 });
 
 
@@ -80,21 +79,21 @@ Route::middleware(['api'])->group(function ($router) {
  */
 
 Route::middleware(['api'])->group(function ($router) {
-    Route::get('me', [UserController::class, 'me'])->middleware('log.route'); //Infos user
-    Route::put('/updateProfil', [UserController::class, 'update'])->name('user.update');                                                                        //modifier le profil
-                                                                           //changer le mot de passe
-                                                                           //changer le mot de passe par email
+    Route::get('me', [UserController::class, 'index'])->middleware('log.route'); //Infos user
+    Route::get('/editProfil/{id}', [UserController::class, 'edit'])->name('user.edit'); //Récupérer les infos utilisateur
+    Route::match(['put', 'patch'], 'updateProfil/{id}', [UserController::class, 'update'])->name('user.update'); //modifier le profil
+    Route::put('change-password', [UserController::class, 'changePassword'])->name('user.change-password'); //changer le mot de passe
+    //changer le mot de passe par email
 
 
 });
 
 
- /**
-  * Evenements endpoints
-  */
+/**
+ * Evenements endpoints
+ */
 
-  Route::middleware(['api'])->group(function ($router) {
+Route::middleware(['api'])->group(function ($router) {
     Route::post('/evenement', [EvenementController::class, 'store']);
     Route::post('/type', [TypeEvenementController::class, 'store']);
-
 });
