@@ -97,3 +97,6 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/evenement', [EvenementController::class, 'store']);
     Route::post('/type', [TypeEvenementController::class, 'store']);
 });
+
+
+

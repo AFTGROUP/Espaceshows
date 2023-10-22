@@ -137,6 +137,15 @@ class EvenementController extends Controller
 
         return response()->json(["message" => "Événement enregistré avec succès"], 200);
     }
+
+
+
+    //Ajouter historistique des commandes par organisateur
+
+
+
+
+
     /**
      * Display the specified resource.
      */
