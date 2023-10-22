@@ -81,8 +81,6 @@ class UserController extends Controller
         try {
             $requestData = $request->all();
 
-            var_dump($requestData);
-
             $validationRules = [];
 
             $user = User::findOrFail($id);
@@ -115,12 +113,12 @@ class UserController extends Controller
 
             if ($user->isDirty('email')) {
                 $user->email_verified_at = null;
-                $identifier = $user->id;
-                $mail = $user->email;
-                generateOtp($identifier, $mail);
+          
             }
 
             $user->save();
+
+            return $this->respondWithMessage('Modification effectué');
 
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return $this->respondNotFound(ApiCode::SOMETHING_WENT_WRONG);
@@ -138,7 +136,7 @@ class UserController extends Controller
 
         $requestData = $request->all();
 
-        var_dump($requestData);
+       // var_dump($requestData);
 
     }
 }
