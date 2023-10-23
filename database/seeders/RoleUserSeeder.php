@@ -14,5 +14,6 @@ class RoleUserSeeder extends Seeder
     {
         //
         
+
     }
 }

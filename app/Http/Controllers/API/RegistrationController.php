@@ -285,20 +285,10 @@ class RegistrationController extends Controller
 
     public function confirmAccount(Request $request)
     {
+
         $token = $request->token;
-        $identifier = ModelsOtp::where('token', $token)->first()->identifier;
 
-        $otp = new Otp();
-        $otpVerify =  $otp->validate($identifier, $token);
-
-         if($otpVerify->status === true){
-            $user = User::findOrFail($identifier);
-            $user->email_verified_at = now();
-            $user->save();
-         }
-
-
-        return response()->json($otpVerify);
+        confirmAccount($token);
 
 
     }

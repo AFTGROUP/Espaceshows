@@ -9,6 +9,7 @@ use App\Http\Controllers\API\SubscribersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EvenementController;
+use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\TypeEvenementController;
 use App\Http\Controllers\API\UserController;
 
@@ -79,12 +80,13 @@ Route::middleware(['api'])->group(function ($router) {
  */
 
 Route::middleware(['api'])->group(function ($router) {
-    Route::get('me', [UserController::class, 'index'])->middleware('log.route'); //Infos user
-    Route::get('/editProfil/{id}', [UserController::class, 'edit']); //Récupérer les infos utilisateur
-    Route::put( 'updateProfil/{id}', [UserController::class, 'update']); //modifier le profil
-    Route::put('change-password/{id}', [UserController::class, 'changePassword']); //changer le mot de passe
-    //changer le mot de passe par email
-
+    Route::get('me', [UserController::class, 'index'])->middleware('log.route');
+    Route::get('/editProfil/{id}', [UserController::class, 'edit']);
+    Route::put('updateProfil/{id}', [UserController::class, 'update']);
+    Route::put('change-password/{id}', [UserController::class, 'changePassword']);
+    Route::post('get_changePasswordCode_byMail', [PasswordController::class, 'get_changePasswordCode_byMail']);
+    Route::post('confirm_forgotPasswordCode_byMail', [PasswordController::class, 'confirm_forgotPasswordCode_byMail']);
+    Route::put('change_password/{identifier}', [PasswordController::class, 'change_password']);
 
 });
 
