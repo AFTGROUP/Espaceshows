@@ -73,6 +73,7 @@ class AuthController extends Controller
             $user = User::where('email', $credentials['email'])->first();
 
             if( isset($user) && $user->email_verified_at === NULL){
+                
                 return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_NOT_VERIFIED);
             }
 
