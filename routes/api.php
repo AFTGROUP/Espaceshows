@@ -65,7 +65,6 @@ Route::middleware(['api'])->group(function ($router) {
  */
 
 Route::middleware(['api'])->group(function ($router) {
-
     Route::get('/reservations', [ReservationController::class, 'index']); //reservation
     Route::get('/reservations/{id}', [ReservationController::class, 'show']);
     Route::post('/reservations', [ReservationController::class, 'store']);
