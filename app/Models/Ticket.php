@@ -23,4 +23,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(Evenement::class);
     }
+
+    public function participants()
+    {
+        return $this->belongsToMany(User::class, 'reservation');
+    }
 }

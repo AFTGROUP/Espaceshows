@@ -9,11 +9,20 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    const TYPE_TICKET_CHOICES = ['Option 1', 'Option 2', 'Option 3'];
-    const MODE_PAIEMENT_CHOICES = ['Feda Pay', 'KkiPay'];
+    protected $table = 'reservations';
 
-    protected $fillable = ['nom', 'prenom', 'email', 'type_ticket', 'mode_paiement'];
+    protected $fillable = [
+        'id',
+        'date_reservation',
+        'nom_utilisateur',
+        'prenom_utilisateur',
+        'type_ticket',
+        'mode_paiement',
+        'user_id',
+        'ticket_id',
+    ];
 
-    // ... autres méthodes et propriétés du modèle
+    // Vous pouvez ajouter des relations Eloquent avec d'autres modèles ici, si nécessaire.
+
 
 }

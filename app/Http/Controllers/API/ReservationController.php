@@ -5,8 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Http\Controllers\Controller;
-
-
+use Illuminate\Support\Facades\Validator;
 
 
 class ReservationController extends Controller
@@ -14,70 +13,100 @@ class ReservationController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('jwt.verify');
     }
-
     
-
     public function index()
     {
+        // Récupérer la liste complète des réservations
         $reservations = Reservation::all();
         return response()->json($reservations);
     }
-
+    
     public function show($id)
     {
-        $reservation = Reservation::find($id);
-        if (!$reservation) {
-            return response()->json(['message' => 'Réservation non trouvée'], 404);
-        }
+        // Récupérer une réservation spécifique par ID
+        $reservation = Reservation::findOrFail($id);
         return response()->json($reservation);
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'type_ticket' => 'required|in:Option 1,Option 2,Option 3',
-            'mode_paiement' => 'required|in:Feda Pay,KkiPay',
-        ]);
+{
+    // Valider les données entrées
+    $validator = Validator::make($request->all(), [
+        'date_reservation' => 'required|date',
+        'nom_utilisateur' => 'required|string',
+        'prenom_utilisateur' => 'required|string',
+        'type_ticket_id' => 'required|exists:type_tickets,id',
+        'mode_paiement' => 'required|in:Moov,MTN',
+        'user_id' => 'required|exists:users,id',
+        'ticket_id' => 'required|exists:tickets,id',
+    ], [
+        'required' => 'Le champ :attribute est requis.',
+        'date' => 'Le champ :attribute doit être une date valide.',
+        'exists' => 'L\'élément avec l\'identifiant :attribute n\'existe pas.',
+        'in' => 'La valeur du champ :attribute doit être Moov ou MTN.'
+    ]);
 
-        $reservation = new Reservation();
-        $reservation->fill($validatedData);
-        $reservation->save();
-
-        return response()->json(['message' => 'Réservation créée avec succès'], 201);
+    if ($validator->fails()) {
+        return response()->json(['Erreurs de validation' => $validator->errors()], 400);
     }
 
-    public function update(Request $request, $id)
+
+    // Enregistrez la réservation
+    $reservation = new Reservation();
+    $reservation->id = \Illuminate\Support\Str::uuid(); // Génération de l'ID UUID
+    $reservation->date_reservation = $request->date_reservation;
+    $reservation->nom_utilisateur = $request->nom_utilisateur;
+    $reservation->prenom_utilisateur = $request->prenom_utilisateur;
+    $reservation->type_ticket_id = $request->type_ticket_id;
+    $reservation->mode_paiement = $request->mode_paiement;
+    $reservation->user_id = $request->user_id;
+    $reservation->ticket_id = $request->ticket_id;
+    $reservation->save();
+
+    // Vous pouvez également enregistrer les tickets associés ici si nécessaire
+
+    return response()->json(["message" => "Réservation enregistrée avec succès"], 200);
+}
+
+public function update(Request $request, $id)
     {
-        $reservation = Reservation::find($id);
-        if (!$reservation) {
-            return response()->json(['message' => 'Réservation non trouvée'], 404);
-        }
+    // Valider les données entrées
+    $validator = Validator::make($request->all(), [
+        'date_reservation' => 'required|date',
+        'nom_utilisateur' => 'required|string',
+        'prenom_utilisateur' => 'required|string',
+        'type_ticket_id' => 'required|exists:type_tickets,id',
+        'mode_paiement' => 'required|in:Moov,MTN',
+        'user_id' => 'required|exists:users,id',
+        'ticket_id' => 'required|exists:tickets,id',
+    ], [
+        'required' => 'Le champ :attribute est requis.',
+        'date' => 'Le champ :attribute doit être une date valide.',
+        'exists' => 'L\'élément avec l\'identifiant :attribute n\'existe pas.',
+        'in' => 'La valeur du champ :attribute doit être Moov ou MTN.'
+    ]);
 
-        $validatedData = $request->validate([
-            'nom' => 'string|max:255',
-            'prenom' => 'string|max:255',
-            'email' => 'email|max:255',
-            'type_ticket' => 'in:Option 1,Option 2,Option 3',
-            'mode_paiement' => 'in:Feda Pay,KkiPay',
-        ]);
-
-        $reservation->update($validatedData);
-        return response()->json($reservation);
+    if ($validator->fails()) {
+        return response()->json(['Erreurs de validation' => $validator->errors()], 400);
     }
+
+    // Trouver la réservation existante
+    $reservation = Reservation::findOrFail($id);
+
+    // Mettre à jour la réservation
+    $reservation->update($request->all());
+
+    return response()->json($reservation);
+}
+
 
     public function destroy($id)
     {
-        $reservation = Reservation::find($id);
-        if (!$reservation) {
-            return response()->json(['message' => 'Réservation non trouvée'], 404);
-        }
-
+        // Supprimer une réservation
+        $reservation = Reservation::findOrFail($id);
         $reservation->delete();
-        return response()->json(['message' => 'Réservation supprimée']);
+        return response()->json(null, 204);
     }
 }

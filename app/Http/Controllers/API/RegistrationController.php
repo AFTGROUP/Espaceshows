@@ -238,16 +238,8 @@ class RegistrationController extends Controller
     public function generateOtp($identifier, $mail)
     {
 
-        //Génération du code otp en son envoi à l'utilisateur
+        generateOtp($identifier, $mail);
 
-        $otp = new Otp();
-        $otpCode = $otp->generate($identifier, 5, 10);
-
-        $CodeOtp = $otpCode->token;
-
-        // Envoyez le code OTP à l'utilisateur (par e-mail, SMS, etc.)
-        Mail::to($mail)
-            ->send(new SendOtp($CodeOtp));
     }
 
 
@@ -293,20 +285,10 @@ class RegistrationController extends Controller
 
     public function confirmAccount(Request $request)
     {
+
         $token = $request->token;
-        $identifier = ModelsOtp::where('token', $token)->first()->identifier;
 
-        $otp = new Otp();
-        $otpVerify =  $otp->validate($identifier, $token);
-
-         if($otpVerify->status === true){
-            $user = User::findOrFail($identifier);
-            $user->email_verified_at = now();
-            $user->save();
-         }
-
-
-        return response()->json($otpVerify);
+        confirmAccount($token);
 
 
     }

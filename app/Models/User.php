@@ -86,4 +86,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(OtpCode::class);
     }
+
+    public function evenement()
+    {
+        return $this->hasMany(Evenement::class);
+    }
+
+    public function reservations()
+    {
+        return $this->belongsToMany(Ticket::class, 'reservation');
+    }
 }

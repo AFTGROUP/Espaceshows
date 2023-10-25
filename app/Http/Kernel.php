@@ -2,8 +2,13 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckJWTToken;
 use App\Http\Middleware\LogRoute;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use JWTAuthMiddleware;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
+use Tymon\JWTAuth\JWT;
 
 class Kernel extends HttpKernel
 {
@@ -41,9 +46,11 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+
     ];
 
     /**
@@ -66,5 +73,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'log.route' => LogRoute::class,
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+
     ];
+
+  
 }

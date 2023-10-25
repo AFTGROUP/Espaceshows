@@ -13,9 +13,10 @@ class EvenementController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('jwt.verify');
+
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -136,6 +137,38 @@ class EvenementController extends Controller
 
         return response()->json(["message" => "Événement enregistré avec succès"], 200);
     }
+
+
+    public function listeParticipant()
+    {
+    // Récupérez l'utilisateur connecté (qui a le rôle d'organisateur)
+    $organisateur = Auth::user();
+
+    // Récupérez tous les événements associés à l'organisateur
+    $evenementsOrganisateur = Evenement::where('organisateur_id', $organisateur->id)->get();
+
+    // Initialisez un tableau pour stocker la liste des participants pour tous les événements
+    $participants = [];
+
+    foreach ($evenementsOrganises as $evenement) {
+        // Récupérez les participants pour chaque événement
+        $participants[$evenement->nom] = $evenement->tickets->map(function ($ticket) {
+            return $ticket->user;
+        });
+    }
+
+    return response()->json($participants);
+    }
+
+
+
+
+    //Ajouter historistique des commandes par organisateur
+
+
+
+
+
     /**
      * Display the specified resource.
      */

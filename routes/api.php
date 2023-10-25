@@ -9,7 +9,9 @@ use App\Http\Controllers\API\SubscribersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EvenementController;
+use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\TypeEvenementController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +41,6 @@ Route::middleware(['api'])->group(function ($router) {
 
     Route::post('/confirmAccount', [RegistrationController::class, 'confirmAccount'])->name('confirmAccount'); //Confirmation de compte par otp
     Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
-
-
-    // Route::patch('user/profile', [UserController::class, 'updateProfile']);
 });
 
 
@@ -56,9 +55,9 @@ Route::middleware(['api'])->group(function ($router) {
 
     // Message to All Subscriber
 
-    Route::get('/subscriber/all', [AdminSubscriberController::class, 'show_all'])->name('admin_subscribers');
-    Route::get('/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('subscriber_send_email');
-    Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('subscriber_send_email_submit');
+    // Route::get('/subscriber/all', [AdminSubscriberController::class, 'show_all'])->name('admin_subscribers');
+    // Route::get('/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('subscriber_send_email');
+    // Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('subscriber_send_email_submit');
 });
 
 
@@ -67,7 +66,6 @@ Route::middleware(['api'])->group(function ($router) {
  */
 
 Route::middleware(['api'])->group(function ($router) {
-
     Route::get('/reservations', [ReservationController::class, 'index']); //reservation
     Route::get('/reservations/{id}', [ReservationController::class, 'show']);
     Route::post('/reservations', [ReservationController::class, 'store']);
@@ -80,23 +78,26 @@ Route::middleware(['api'])->group(function ($router) {
  * Users profile & others endpoints
  */
 
-
- Route::middleware(['jwt.auth', 'log.route'])->group(function ($router) {
-
-    Route::get('me', [AuthController::class, 'me'])->middleware('log.route'); //Données utilisateur
-
+Route::middleware(['api'])->group(function ($router) {
+    Route::get('me', [UserController::class, 'index'])->middleware('log.route');
+    Route::get('/editProfil/{id}', [UserController::class, 'edit']);
+    Route::put('updateProfil/{id}', [UserController::class, 'update']);
+    Route::put('change-password/{id}', [UserController::class, 'changePassword']);
+    Route::post('get_changePasswordCode_byMail', [PasswordController::class, 'get_changePasswordCode_byMail']);
+    Route::post('confirm_forgotPasswordCode_byMail', [PasswordController::class, 'confirm_forgotPasswordCode_byMail']);
+    Route::put('change_password/{identifier}', [PasswordController::class, 'change_password']);
 
 });
 
 
+/**
+ * Evenements endpoints
+ */
 
-
- /**
-  * Evenements endpoints
-  */
-
-  Route::middleware(['api'])->group(function ($router) {
+Route::middleware(['api'])->group(function ($router) {
     Route::post('/evenement', [EvenementController::class, 'store']);
     Route::post('/type', [TypeEvenementController::class, 'store']);
-
 });
+
+
+

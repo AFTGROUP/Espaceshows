@@ -19,6 +19,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
+
     }
 
 
@@ -72,6 +73,7 @@ class AuthController extends Controller
             $user = User::where('email', $credentials['email'])->first();
 
             if( isset($user) && $user->email_verified_at === NULL){
+                
                 return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_NOT_VERIFIED);
             }
 
@@ -116,9 +118,18 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->logout();
-        return $this->respondWithMessage('User successfully logged out');
+
+        try{
+            auth()->logout();
+            return $this->respondWithMessage('User successfully logged out');
+
+        }
+        catch (JWTException $exception) {
+            return $this->respondInternalServerError(ApiCode::SOMETHING_WENT_WRONG);
+
+        }
     }
+
 
     /**
      * @OA\Post(
@@ -148,17 +159,6 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-    public function me()
-    {
-        try {
-            return $this->respond(auth()->user());
-        } catch (TokenExpiredException $e) {
-            return $this->respondWithMessage($e->getMessage());
-        } catch (TokenInvalidException $e) {
-            return $this->respondWithMessage($e->getMessage());
-        } catch (JWTException $e) {
-            return $this->respondWithMessage($e->getMessage());
-        }
-    }
+
 
 }
