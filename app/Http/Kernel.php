@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckJWTToken;
+use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Middleware\LogRoute;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use JWTAuthMiddleware;
@@ -74,8 +75,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'log.route' => LogRoute::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-
+        'isAdmin'  => IsAdminMiddleware::class,
     ];
-
-  
 }
