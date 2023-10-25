@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,5 +38,35 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm(){
+        return view('auth.login');
+    }
+
+    public function store(Request $request)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     throw new ValidationException($validator);
+        // }
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (auth()->attempt($credentials)) {
+            // Authentication successful
+            return redirect()->intended(route('dashboard'));
+        }
+        // Authentication failed
+        throw ValidationException::withMessages([
+            'email' => __('auth.failed'),
+        ]);
     }
 }
