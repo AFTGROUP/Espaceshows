@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "e7adbb33eab3b6ab485e239b033795f6",
+=======
+    "content-hash": "9340f43d5b0e20f2cdbbbf3b16860f2d",
+>>>>>>> e8820b539b9039ba2b42e4d2bcaed3f817480123
     "packages": [
         {
             "name": "brick/math",
@@ -3701,6 +3705,7 @@
             "time": "2023-04-15T23:01:58+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "stella-maris/clock",
             "version": "0.1.7",
             "source": {
@@ -3757,6 +3762,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "swagger-api/swagger-ui",
+            "version": "v5.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swagger-api/swagger-ui.git",
+                "reference": "bb59bcf36dff8b6476299ab7d45cc87957999d36"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> e8820b539b9039ba2b42e4d2bcaed3f817480123
                 "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/bb59bcf36dff8b6476299ab7d45cc87957999d36",
                 "reference": "bb59bcf36dff8b6476299ab7d45cc87957999d36",
                 "shasum": ""
@@ -6755,6 +6771,7 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "laravel/breeze",
             "version": "v1.25.1",
             "source": {
@@ -6817,6 +6834,8 @@
             "time": "2023-10-20T14:02:17+00:00"
         },
         {
+=======
+>>>>>>> e8820b539b9039ba2b42e4d2bcaed3f817480123
             "name": "laravel/sail",
             "version": "v1.26.0",
             "source": {
