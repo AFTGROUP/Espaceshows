@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ADMIN\AuthController;
+use App\Http\Controllers\ADMIN\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,23 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 
-Auth::routes();
+Route::group(['middleware' => 'web'], function () {
+    Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('admin/login', [LoginController::class, 'showLoginForm']);
 
-Route::get('/login', [LoginController::class, 'showLoginForm']);
+Route::post('admin/login', [LoginController::class, 'store'])->name('admin.login');
 
-Route::post('/login', [LoginController::class, 'store'])->name('admin.login');
+Route::post('admin/deconnexion', [LoginController::class, 'logout'])->name('admin.logout');
 
-Route::middleware(['acessDashboard'])->group(function () {
+
+Route::middleware(['isAdmin'])->group(function () {
+
 
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::resource('profil', ProfileController::class);
+
+});
 
 
 });
