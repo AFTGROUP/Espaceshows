@@ -20,8 +20,8 @@ use App\Http\Controllers\ProfileController;
 
 
 
-Route::group(['middleware' => 'web'], function () {
-    Auth::routes();
+
+
 
     Route::get('admin/login', [LoginController::class, 'showLoginForm']);
 
@@ -32,11 +32,10 @@ Route::post('admin/deconnexion', [LoginController::class, 'logout'])->name('admi
 
 Route::middleware(['isAdmin'])->group(function () {
 
-
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::resource('profil', ProfileController::class);
 
 });
 
+Auth::routes();
 
-});

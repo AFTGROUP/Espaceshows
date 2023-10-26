@@ -47,15 +47,8 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
 
-        // if ($validator->fails()) {
-        //     throw new ValidationException($validator);
-        // }
-
+        dd($request);
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
