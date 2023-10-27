@@ -23,19 +23,7 @@ use App\Http\Controllers\ProfileController;
 
 
 
-    Route::get('admin/login', [LoginController::class, 'showLoginForm']);
-
-Route::post('admin/login', [LoginController::class, 'store'])->name('admin.login');
-
-Route::post('admin/deconnexion', [LoginController::class, 'logout'])->name('admin.logout');
-
-
-Route::middleware(['isAdmin'])->group(function () {
-
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-    Route::resource('profil', ProfileController::class);
-
-});
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
