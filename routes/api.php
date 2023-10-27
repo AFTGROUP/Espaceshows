@@ -100,4 +100,11 @@ Route::middleware(['api'])->group(function ($router) {
 });
 
 
+/**
+ * Notifications endpoints
+ */
 
+
+ /**
+  * Country & cities endpoints
+  */
