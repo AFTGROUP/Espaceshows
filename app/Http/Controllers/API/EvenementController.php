@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class EvenementController extends Controller
@@ -79,64 +80,73 @@ class EvenementController extends Controller
  * )
  */
 
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'nom' => 'required|max:50',
-            'pays' => 'required',
-            'ville' => 'required',
-            'description' => 'required',
-            'date_debut' => 'required',
-            'date_fin' => 'required',
-            'mots_cles' => 'required',
-            'type_ticket' => 'required',
-            'prix_ticket' => 'required',
-            'nombre_place_disponible' => 'required',
-            'type_evenement_id' => 'required|exists:type_evenements,id',
-        ], [
-            'required' => 'Le champ :attribute est requis.',
-            'numeric' => 'Le champ :attribute doit être numérique.',
-            'exists' => 'Le type_evenement avec l\'identifiant '.$request->social_id.' n\'existe pas.',
-        ]);
+ public function store(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'nom' => 'required|max:50',
+        'pays' => 'required',
+        'ville' => 'required',
+        'description' => 'required',
+        'date_debut' => 'required',
+        'date_fin' => 'required',
+        'mots_cles' => 'required',
+        'type_evenement_id' => 'required|exists:type_evenements,id',
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'nombre_place_disponible' => 'required|numeric',
+        'type_ticket_id' => 'required',
+        'prix_ticket' => 'required',
+    ], [
+        'required' => 'Le champ :attribute est requis.',
+        'numeric' => 'Le champ :attribute doit être numérique.',
+        'exists' => 'Le type_evenement avec l\'identifiant ' . $request->type_evenement_id . ' n\'existe pas.',
+        'image' => 'Le champ :attribute doit être une image.',
+        'mimes' => 'Le champ :attribute doit être de type jpeg, png, jpg, gif ou svg.',
+        'max' => 'Le champ :attribute ne doit pas dépasser 2 Mo.',
+    ]);
 
-        if($validator->fails()) {
-            return response()->json(['Erreurs de validation' => $validator->errors()], 400);
-        }
-
-        $code = mt_rand(100000, 999999);
-
-        $path = $request->file('photo')->store('Photos', 'public');
-        $evenement = new Evenement();
-        $evenement->code = $code;
-        $evenement->nom = $request->nom;
-        $evenement->pays = $request->pays;
-        $evenement->ville = $request->ville;
-        $evenement->description = $request->description;
-        $evenement->photo = $path;
-        $evenement->date_debut = $request->date_debut;
-        $evenement->date_fin = $request->date_fin;
-        $evenement->mots_cles = $request->mots_cles;
-        $evenement->nombre_place_disponible = $request->nombre_place_disponible;
-        $evenement->type_evenement_id = $request->type_evenement_id;
-        $evenement->save();
-
-        // Enregistrez les tickets
-        $type_tickets = $request->input('type_ticket');
-        $prix_tickets = $request->input('prix_ticket');
-
-        if (!empty($type_tickets) && is_array($type_tickets) && count($type_tickets) === count($prix_tickets)) {
-            foreach ($type_tickets as $key => $type_ticket) {
-                $ticket = new Ticket();
-                $ticket->code = $code;
-                $ticket->type_ticket = $type_ticket;
-                $ticket->prix_ticket = $prix_tickets[$key];
-                $ticket->evenement_id = $evenement->id;
-                $ticket->save();
-            }
-        }
-
-        return response()->json(["message" => "Événement enregistré avec succès"], 200);
+    if ($validator->fails()) {
+        return response()->json(['Erreurs de validation' => $validator->errors()], 400);
     }
+
+    $code = mt_rand(100000, 999999);
+
+    $path = $request->file('photo')->store('Photos', 'public');
+    $evenement = new Evenement();
+    $evenement->code = $code;
+    $evenement->nom = $request->nom;
+    $evenement->pays = $request->pays;
+    $evenement->ville = $request->ville;
+    $evenement->description = $request->description;
+    $evenement->photo = $path;
+    $evenement->date_debut = $request->date_debut;
+    $evenement->date_fin = $request->date_fin;
+    $evenement->mots_cles = $request->mots_cles;
+    $evenement->nombre_place_disponible = $request->nombre_place_disponible;
+    $evenement->type_evenement_id = $request->type_evenement_id;
+    $evenement->user_id = Auth::user()->id;
+    //$evenement->save();
+
+    // Enregistrez les tickets
+    $type_tickets = $request->type_ticket_id;
+    $prix_tickets = $request->prix_ticket;
+    
+    if (!empty($type_tickets) && is_array($type_tickets) && count($type_tickets) === count($prix_tickets)) {
+        foreach ($type_tickets as $key => $type_ticket) {
+            $ticket = new Ticket();
+            $ticket->code = $code;
+            $ticket->type_ticketi_id = $type_ticket;
+            $ticket->prix_ticket = $prix_tickets[$key];
+            $ticket->evenement_id = $evenement->id;
+            dd($ticket);
+            $ticket->save();
+            
+        }
+    }
+
+    return response()->json(["message" => "Événement enregistré avec succès"], 200);
+}
+
+ 
 
 
     public function listeParticipant()
