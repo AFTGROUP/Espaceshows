@@ -64,6 +64,7 @@ Route::middleware(['api'])->group(function ($router) {
 /**
  * Réservation tickets endpoints
  */
+Route::middleware(['api'])->group(function ($router) {
 
     Route::get('/reservations', [ReservationController::class, 'index']); //reservation
     Route::get('/reservations/{id}', [ReservationController::class, 'show']);
@@ -71,7 +72,9 @@ Route::middleware(['api'])->group(function ($router) {
     Route::put('/reservations/{id}', [ReservationController::class, 'update']);
     Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
 
-/**
+});
+
+    /**
  * Users profile & others endpoints
  */
 
@@ -114,4 +117,15 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/getCityInCountry', [CountryStateCityController::class, 'getCityInCountry']); //Villes d'un pays
 
 
+});
+
+
+
+
+/**
+ * Réservation tickets endpoints
+ */
+Route::middleware(['api'])->group(function ($router) {
+
+Route::get('//historique-commandes', [EvenementController::class, 'historiqueCommandes']); //reservation
 });
