@@ -27,5 +27,6 @@ class ApiCode {
     public const INVALID_RESET_PASSWORD_TOKEN = 255;
     public const ACCOUNT_NOT_VERIFIED = 256;
     public const RESOURCE_NOT_FOUND = 257;
+    public const ACCOUNT_DISABLED=258;
 
 }

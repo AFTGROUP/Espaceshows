@@ -165,6 +165,219 @@
                 ]
             }
         },
+        "/api/allCountryAndPosition": {
+            "get": {
+                "tags": [
+                    "PaysEtatsVilles"
+                ],
+                "summary": "Obtenir toutes les informations sur les pays et leurs positions",
+                "operationId": "e05c563c1b12244e702f10df0654bc28",
+                "responses": {
+                    "200": {
+                        "description": "Données des pays et de leurs positions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "countries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Nom du pays"
+                                                            },
+                                                            "position": {
+                                                                "type": "string",
+                                                                "example": "Position géographique"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Une erreur interne s'est produite"
+                    }
+                }
+            }
+        },
+        "/api/getStateInCountry": {
+            "post": {
+                "tags": [
+                    "PaysEtatsVilles"
+                ],
+                "summary": "Obtenir les départements/États d'un pays",
+                "operationId": "ad083a379ad2604dcbc70851c0489b2b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "country": {
+                                        "type": "string",
+                                        "example": "Nom du pays"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Liste des départements/États du pays",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "states": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "Nom de l'État"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Une erreur interne s'est produite"
+                    }
+                }
+            }
+        },
+        "/api/getCityInState": {
+            "post": {
+                "tags": [
+                    "PaysEtatsVilles"
+                ],
+                "summary": "Obtenir les villes d'un département/État d'un pays",
+                "operationId": "9204a5bafa922ca0f05af82d94e3a749",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "country": {
+                                        "type": "string",
+                                        "example": "Nom du pays"
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "example": "Nom du département/État"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Liste des villes du département/État",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "cities": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "Nom de la ville"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Une erreur interne s'est produite"
+                    }
+                }
+            }
+        },
+        "/api/getCityInCountry": {
+            "post": {
+                "tags": [
+                    "PaysEtatsVilles"
+                ],
+                "summary": "Obtenir les villes d'un pays",
+                "operationId": "b08c047bcfe04df07d3faa87f84e38b4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "country": {
+                                        "type": "string",
+                                        "example": "Nom du pays"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Liste des villes du pays",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "cities": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "Nom de la ville"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Une erreur interne s'est produite"
+                    }
+                }
+            }
+        },
         "/api/evenement": {
             "post": {
                 "tags": [
@@ -447,14 +660,14 @@
                 }
             }
         },
-        "/AllRoles": {
+        "/api/allRoles": {
             "get": {
                 "tags": [
                     "Roles"
                 ],
                 "summary": "Liste des rôles",
                 "description": "Liste des rôles\n\nRécupère la liste de tous les rôles.",
-                "operationId": "9248ac42db3ff1fac6ab4ebe7d63b6d4",
+                "operationId": "68f4642092831f82df96f44dd0b771eb",
                 "responses": {
                     "200": {
                         "description": "Liste des rôles",
@@ -472,14 +685,14 @@
                 }
             }
         },
-        "/api/select-role": {
+        "/api/selectRole": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Sélectionner un rôle avant l'inscription",
                 "description": "Permet à un utilisateur de sélectionner un rôle en fournissant un identifiant de rôle valide.",
-                "operationId": "092b6a4d05c3cb530206da62c4c25319",
+                "operationId": "196844b114b95dc855362716cb392aac",
                 "requestBody": {
                     "required": true,
                     "content": {

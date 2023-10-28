@@ -32,7 +32,7 @@ class RegistrationController extends Controller
      * Récupère la liste de tous les rôles.
      *
      * @OA\Get(
-     *     path="/AllRoles",
+     *     path="/api/allRoles",
      *     summary="Liste des rôles",
      *     tags={"Roles"},
      *     @OA\Response(
@@ -57,7 +57,7 @@ class RegistrationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/select-role",
+     *     path="/api/selectRole",
      *     tags={"Auth"},
      *     summary="Sélectionner un rôle avant l'inscription",
      *     description="Permet à un utilisateur de sélectionner un rôle en fournissant un identifiant de rôle valide.",

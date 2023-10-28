@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CountryStateCityController;
 use App\Http\Controllers\API\RegistrationController;
 use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\RoleController;
@@ -96,4 +97,21 @@ Route::middleware(['api'])->group(function ($router) {
 });
 
 
+/**
+ * Notifications endpoints
+ */
 
+
+ /**
+  * Country & cities endpoints
+  */
+
+  Route::middleware(['api'])->group(function ($router) {
+
+    Route::get('/allCountryAndPosition', [CountryStateCityController::class, 'allCountryAndPosition']); //TOus les pays et positions
+    Route::post('/getStateInCountry', [CountryStateCityController::class, 'getStateInCountry']); // Departements/Etats d'un pays
+    Route::post('/getCityInState', [CountryStateCityController::class, 'getCityInState']); //Villes d'un département
+    Route::post('/getCityInCountry', [CountryStateCityController::class, 'getCityInCountry']); //Villes d'un pays
+
+
+});
