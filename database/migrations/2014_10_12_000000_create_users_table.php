@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('telephone')->unique();
             $table->string('password');
+            $table->foreignUuid('user_statut_id')->constrained('user_statuts');
             $table->rememberToken();
             $table->timestamps();
         });
