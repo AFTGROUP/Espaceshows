@@ -209,7 +209,12 @@
                     "500": {
                         "description": "Une erreur interne s'est produite"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/getStateInCountry": {
@@ -263,7 +268,12 @@
                     "500": {
                         "description": "Une erreur interne s'est produite"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/getCityInState": {
@@ -321,7 +331,12 @@
                     "500": {
                         "description": "Une erreur interne s'est produite"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/getCityInCountry": {
@@ -375,7 +390,12 @@
                     "500": {
                         "description": "Une erreur interne s'est produite"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/evenement": {
@@ -487,6 +507,95 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/sendNotification/{content}": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Envoyer une notification",
+                "description": "Envoyer une notification à l'utilisateur authentifié.",
+                "operationId": "envoyerNotification",
+                "parameters": [
+                    {
+                        "name": "content",
+                        "in": "path",
+                        "description": "Contenu de la notification",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification envoyée avec succès"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/enableNotification": {
+            "put": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Activer les notifications",
+                "description": "Activer les notifications pour l'utilisateur authentifié.",
+                "operationId": "activerNotifications",
+                "responses": {
+                    "200": {
+                        "description": "Notifications activées"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/disabledNotification": {
+            "put": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Désactiver les notifications",
+                "description": "Désactiver les notifications pour l'utilisateur authentifié.",
+                "operationId": "desactiverNotifications",
+                "responses": {
+                    "200": {
+                        "description": "Notifications désactivées"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "500": {
+                        "description": "Erreur interne du serveur"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/get_changePasswordCode_byMail": {

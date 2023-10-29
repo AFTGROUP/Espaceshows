@@ -107,7 +107,9 @@ Route::middleware(['api'])->group(function ($router) {
 Route::middleware(['api'])->group(function ($router) {
 
     Route::post('/sendNotification/{content}', [NotificationController::class, 'sendNotification']);
-
+   // Route::post('/markAsRead', [NotificationController::class, 'markAsRead']);
+    Route::put('/enableNotification', [NotificationController::class, 'enableNotification']);
+    Route::put('disabledNotification', [NotificationController::class, 'disabledNotification']);
 
 });
 
@@ -134,5 +136,5 @@ Route::middleware(['api'])->group(function ($router) {
  */
 Route::middleware(['api'])->group(function ($router) {
 
-Route::get('//historique-commandes', [EvenementController::class, 'historiqueCommandes']); //reservation
+Route::get('/historique-commandes', [EvenementController::class, 'historiqueCommandes']); //reservation
 });

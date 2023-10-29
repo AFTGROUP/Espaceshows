@@ -20,6 +20,7 @@ class CountryStateCityController extends Controller
      * @OA\Get(
      *     path="/api/allCountryAndPosition",
      *     summary="Obtenir toutes les informations sur les pays et leurs positions",
+     *     security={{"bearerAuth":{}}},
      *     tags={"PaysEtatsVilles"},
      *     @OA\Response(
      *         response=200,
@@ -69,6 +70,7 @@ class CountryStateCityController extends Controller
      * @OA\Post(
      *     path="/api/getStateInCountry",
      *     summary="Obtenir les départements/États d'un pays",
+     *     security={{"bearerAuth":{}}},
      *     tags={"PaysEtatsVilles"},
      *     @OA\RequestBody(
      *         required=true,
@@ -124,6 +126,7 @@ class CountryStateCityController extends Controller
      * @OA\Post(
      *     path="/api/getCityInState",
      *     summary="Obtenir les villes d'un département/État d'un pays",
+     *     security={{"bearerAuth":{}}},
      *     tags={"PaysEtatsVilles"},
      *     @OA\RequestBody(
      *         required=true,
@@ -182,6 +185,7 @@ class CountryStateCityController extends Controller
      * @OA\Post(
      *     path="/api/getCityInCountry",
      *     summary="Obtenir les villes d'un pays",
+     *     security={{"bearerAuth":{}}},
      *     tags={"PaysEtatsVilles"},
      *     @OA\RequestBody(
      *         required=true,

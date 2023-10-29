@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('pays')->nullable();
             $table->string('ville')->nullable();
             $table->foreignUuid('user_statut_id')->constrained('user_statuts');
+            $table->boolean('notifications_active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
