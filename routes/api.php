@@ -10,6 +10,7 @@ use App\Http\Controllers\API\SubscribersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EvenementController;
+use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\TypeEvenementController;
 use App\Http\Controllers\API\UserController;
@@ -104,6 +105,12 @@ Route::middleware(['api'])->group(function ($router) {
 /**
  * Notifications endpoints
  */
+Route::middleware(['api'])->group(function ($router) {
+
+    Route::post('/sendNotification/{content}', [NotificationController::class, 'sendNotification']);
+
+
+});
 
 
  /**

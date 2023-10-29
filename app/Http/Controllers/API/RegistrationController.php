@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Mail\SendOtp;
 use Ichtrojan\Otp\Otp;
 use App\Models\OtpCode;
+use App\Models\UserStatut;
 use App\Models\TemporyData;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
@@ -176,8 +177,10 @@ class RegistrationController extends Controller
     {
             $attributes = $request->getAttributes();
 
-            $user =  User::create($attributes);
-
+           // $user =  User::create($attributes);
+           $status = UserStatut::where('statut', 'active')->first()->id;
+           $user =  User::create(array_merge($attributes, ['user_statut_id' => $status]));
+          //  $user->status()->associate($status);
             // Récupérez les données associées au token temporaire depuis la base de données temporaire
             $temporaryToken =  $attributes['temporary_token'];
 
