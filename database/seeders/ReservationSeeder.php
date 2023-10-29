@@ -1,17 +1,25 @@
 <?php
 
-namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Reservation;
+use Illuminate\Support\Str;
 
-class ReservationSeeder extends Seeder
+class ReservationsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
+<<<<<<< HEAD
+        Reservation::create([
+            'id' => Str::uuid()->toString(),
+            'date_reservation' => now(),
+            'nom_utilisateur' => 'Nom Utilisateur',
+            'prenom_utilisateur' => 'Prénom Utilisateur',
+            'type_ticket_id' => 1, // ID du type de ticket
+            'mode_paiement' => 'Moov', // Mode de paiement
+            'user_id' => 1, // ID de l'utilisateur
+            'ticket_id' => 1, // ID du ticket
+        ]);
+=======
         // DB::table('reservations')->insert([
         //     [
         //         'id' => Str::uuid()->toString(),
@@ -25,5 +33,6 @@ class ReservationSeeder extends Seeder
 
         //    ],
         // ]);
+>>>>>>> 87ed65c7c6b6a17fb83e6101e6319df47b586750
     }
 }
