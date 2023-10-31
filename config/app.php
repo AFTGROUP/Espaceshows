@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Ichtrojan\Otp\OtpServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -188,6 +189,10 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Otp' => Ichtrojan\Otp\Otp::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Session' => Illuminate\Support\Facades\Session::class,
+
+
     ])->toArray(),
 
 ];
