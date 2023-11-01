@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class ReservationController extends Controller
@@ -52,6 +53,8 @@ class ReservationController extends Controller
         return response()->json(['Erreurs de validation' => $validator->errors()], 400);
     }
 
+    $user = Auth::user();
+
 
     // Enregistrez la réservation
     $reservation = new Reservation();
@@ -61,7 +64,7 @@ class ReservationController extends Controller
     $reservation->prenom_utilisateur = $request->prenom_utilisateur;
     $reservation->type_ticket_id = $request->type_ticket_id;
     $reservation->mode_paiement = $request->mode_paiement;
-    $reservation->user_id = $request->user_id;
+    $reservation->user_id = $user->id;
     $reservation->ticket_id = $request->ticket_id;
     $reservation->save();
 

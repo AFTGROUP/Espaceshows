@@ -159,7 +159,7 @@ class EvenementController extends Controller
     // Initialisez un tableau pour stocker la liste des participants pour tous les événements
     $participants = [];
 
-    foreach ($evenementsOrganises as $evenement) {
+    foreach ($evenementsOrganisateur as $evenement) {
         // Récupérez les participants pour chaque événement
         $participants[$evenement->nom] = $evenement->tickets->map(function ($ticket) {
             return $ticket->user;
@@ -173,6 +173,34 @@ class EvenementController extends Controller
 
 
     //Ajouter historistique des commandes par organisateur
+    public function historiqueCommandes()
+    {
+        // Récupérez l'utilisateur connecté (qui a le rôle d'organisateur)
+        $organisateur = Auth::user();
+    
+        // Récupérez tous les événements associés à l'organisateur
+        $evenementsOrganisateur = Evenement::where('organisateur_id', $organisateur->id)->get();
+    
+        // Initialisez un tableau pour stocker l'historique des commandes
+        $historiqueCommandes = [];
+    
+        foreach ($evenementsOrganisateur as $evenement) {
+            // Récupérez les commandes pour chaque événement
+            $commandes = Ticket::where('evenement_id', $evenement->id)->get();
+    
+            // Pour chaque commande, récupérez les détails nécessaires
+            foreach ($commandes as $commande) {
+                // Vous pouvez ajouter les détails de la commande au tableau d'historique
+                $historiqueCommandes[] = [
+                    'evenement' => $evenement->nom,
+                    'participant' => $commande->participant->nom,  // Assurez-vous que votre modèle de commande contient une relation avec le participant
+                ];
+            }
+        }
+    
+        return response()->json($historiqueCommandes);
+    }
+    
 
 
 

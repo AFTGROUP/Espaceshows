@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UserStatut;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,6 +26,7 @@ class UserFactory extends Factory
             'telephone' => '0' . rand(600000000, 699999999),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'user_statut_id' => UserStatut::where('statut', 'active')->first()->id,
         ];
     }
 

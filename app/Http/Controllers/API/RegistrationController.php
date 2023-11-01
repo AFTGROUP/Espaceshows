@@ -11,12 +11,14 @@ use App\Models\User;
 use App\Mail\SendOtp;
 use Ichtrojan\Otp\Otp;
 use App\Models\OtpCode;
+use App\Models\UserStatut;
 use App\Models\TemporyData;
 use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegistrationRequest;
+use Exception;
 use Ichtrojan\Otp\Models\Otp as ModelsOtp;
 use Illuminate\Validation\ValidationException;
 
@@ -32,7 +34,7 @@ class RegistrationController extends Controller
      * Récupère la liste de tous les rôles.
      *
      * @OA\Get(
-     *     path="/AllRoles",
+     *     path="/api/allRoles",
      *     summary="Liste des rôles",
      *     tags={"Roles"},
      *     @OA\Response(
@@ -57,7 +59,7 @@ class RegistrationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/select-role",
+     *     path="/api/selectRole",
      *     tags={"Auth"},
      *     summary="Sélectionner un rôle avant l'inscription",
      *     description="Permet à un utilisateur de sélectionner un rôle en fournissant un identifiant de rôle valide.",
@@ -101,7 +103,7 @@ class RegistrationController extends Controller
 
     public function selectRole(Request $request)
     {
-        try{
+        try {
             $validated = $request->validate([
                 'role_id' => 'required|exists:roles,id',
             ]);
@@ -118,11 +120,9 @@ class RegistrationController extends Controller
             TemporyData::storeTemporaryData($temporaryToken, $temporaryData);
 
             return $this->respond($temporaryToken, 'Rôle choisi avec succès.');
-        }
-        catch (ValidationException $e) {
+        } catch (ValidationException $e) {
 
             return $this->respondUnprocessableEntity(ApiCode::VALIDATION_ERROR);
-
         }
     }
 
@@ -174,30 +174,32 @@ class RegistrationController extends Controller
 
     public function register(RegistrationRequest $request)
     {
-            $attributes = $request->getAttributes();
+        $attributes = $request->getAttributes();
 
-            $user =  User::create($attributes);
+        // $user =  User::create($attributes);
+        $status = UserStatut::where('statut', 'active')->first()->id;
+        $user =  User::create(array_merge($attributes, ['user_statut_id' => $status]));
+        //  $user->status()->associate($status);
+        // Récupérez les données associées au token temporaire depuis la base de données temporaire
+        $temporaryToken =  $attributes['temporary_token'];
 
-            // Récupérez les données associées au token temporaire depuis la base de données temporaire
-            $temporaryToken =  $attributes['temporary_token'];
+        $temporaryData = TemporyData::retrieveTemporaryData($temporaryToken);
 
-            $temporaryData = TemporyData::retrieveTemporaryData($temporaryToken);
+        if ($temporaryData) {
 
-            if ($temporaryData) {
+            $user->roles()->attach($temporaryData->role_id);
+        }
 
-                $user->roles()->attach($temporaryData->role_id);
-            }
+        //Effacer le token temporaire
 
-            //Effacer le token temporaire
+        TemporyData::clearTemporaryData($temporaryToken);
 
-            TemporyData::clearTemporaryData($temporaryToken);
+        //Générer un code otp et l'envoyer à l'utilisateur
+        $identifier = $user->id;
+        $mail = $user->email;
+        $this->generateOtp($identifier, $mail);
 
-            //Générer un code otp et l'envoyer à l'utilisateur
-            $identifier = $user->id;
-            $mail = $user->email;
-            $this->generateOtp($identifier, $mail);
-
-            return $this->respondWithMessage('User successfully created');
+        return $this->respondWithMessage('User successfully created');
     }
 
 
@@ -239,7 +241,6 @@ class RegistrationController extends Controller
     {
 
         generateOtp($identifier, $mail);
-
     }
 
 
@@ -285,11 +286,13 @@ class RegistrationController extends Controller
 
     public function confirmAccount(Request $request)
     {
+        try {
 
-        $token = $request->token;
-
-        confirmAccount($token);
-
-
+            $token = $request->token;
+            $otpVerify = confirmAccount($token);
+            return $this->respond($otpVerify);
+        } catch (Exception $e) {
+            return $this->respondWithMessage('' . $e->getMessage());
+        }
     }
 }

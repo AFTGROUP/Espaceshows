@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('user_statuts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('contenu');
-            $table->foreignUuid('user_id')->constrained('users');
+            $table->string('statut');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('user_statuts');
     }
 };

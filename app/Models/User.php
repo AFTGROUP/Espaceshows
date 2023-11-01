@@ -10,8 +10,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -31,6 +33,8 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at',
         'telephone',
         'password',
+        'user_statut_id',
+        'google_id'
     ];
 
     /**
@@ -96,4 +100,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Ticket::class, 'reservation');
     }
+
+    public function status() : BelongsTo
+    {
+        return $this->belongsTo(UserStatut::class, 'user_statut_id');
+    }
+
 }
