@@ -19,6 +19,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('telephone')->unique();
             $table->string('password');
+            $table->string('pays')->nullable();
+            $table->string('ville')->nullable();
+            $table->foreignUuid('user_statut_id')->constrained('user_statuts');
+            $table->boolean('notifications_active')->default(false);
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -70,15 +70,20 @@ class AuthController extends Controller
                 'password' => 'required|string|max:25'
             ]);
 
-            $user = User::where('email', $credentials['email'])->first();
+            $user = User::where('email', $credentials['email'])->with('status')->first();
 
             if( isset($user) && $user->email_verified_at === NULL){
-                
+
                 return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_NOT_VERIFIED);
             }
 
             if (!$token = auth()->attempt($credentials)) {
                 return $this->respondUnAuthorizedRequest(ApiCode::INVALID_CREDENTIALS);
+            }
+
+            if(isset($user) && $user->status->statut == "desactive"){
+                return $this->respondUnAuthorizedRequest(ApiCode::ACCOUNT_DISABLED);
+
             }
 
             return $this->respondWithToken($token);

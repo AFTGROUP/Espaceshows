@@ -1,7 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CountryStateCityController;
 use App\Http\Controllers\API\RegistrationController;
 use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\RoleController;
@@ -9,6 +9,8 @@ use App\Http\Controllers\API\SubscribersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EvenementController;
+use App\Http\Controllers\API\GoogleController;
+use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\PasswordController;
 use App\Http\Controllers\API\TypeEvenementController;
 use App\Http\Controllers\API\UserController;
@@ -43,6 +45,12 @@ Route::middleware(['api'])->group(function ($router) {
     Route::get('/generateOtp', [RegistrationController::class, 'generateOtp']);
 });
 
+/**
+ * Authentification endpoints by google API
+ */
+
+ Route::get('/auth/google', [GoogleController::class, 'loginWithGoogle']);
+ Route::any('auth/google/callback', [GoogleController::class, 'callbackFromGoogle']);
 
 /**
  * Newsletter endpoints
@@ -64,15 +72,14 @@ Route::middleware(['api'])->group(function ($router) {
 /**
  * Réservation tickets endpoints
  */
-
 Route::middleware(['api'])->group(function ($router) {
+
     Route::get('/reservations', [ReservationController::class, 'index']); //reservation
     Route::get('/reservations/{id}', [ReservationController::class, 'show']);
     Route::post('/reservations', [ReservationController::class, 'store']);
     Route::put('/reservations/{id}', [ReservationController::class, 'update']);
     Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
 });
-
 
 /**
  * Users profile & others endpoints
@@ -86,7 +93,6 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('get_changePasswordCode_byMail', [PasswordController::class, 'get_changePasswordCode_byMail']);
     Route::post('confirm_forgotPasswordCode_byMail', [PasswordController::class, 'confirm_forgotPasswordCode_byMail']);
     Route::put('change_password/{identifier}', [PasswordController::class, 'change_password']);
-
 });
 
 
@@ -98,13 +104,3 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/evenement', [EvenementController::class, 'store']);
     Route::post('/type', [TypeEvenementController::class, 'store']);
 });
-
-
-/**
- * Notifications endpoints
- */
-
-
- /**
-  * Country & cities endpoints
-  */
