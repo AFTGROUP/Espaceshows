@@ -21,5 +21,6 @@ function confirmAccount($token)
         $user->email_verified_at = now();
         $user->save();
     }
-    return response()->json($otpVerify);
+   // return response()->json($otpVerify);
+   return $otpVerify;
 }

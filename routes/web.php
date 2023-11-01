@@ -23,7 +23,10 @@ use App\Http\Controllers\ProfileController;
 
 
 
+<<<<<<< HEAD
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+>>>>>>> 89853c9ddeeb32ecf1bf5151f76dddcb649253bf
