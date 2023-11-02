@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('evenements', function (Blueprint $table) {
 
             $table->uuid('id')->primary();
-            $table->integer('code');
+            $table->string('code');
             $table->string('nom');
             $table->string('pays');
             $table->string('ville');
