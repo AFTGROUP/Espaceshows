@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
                        RoleUserSeeder::class,
                        TypeTicketsSeeder::class,
                        TypeEvenementSeeder::class,
-                       EvenementSeeder::class
+                       EvenementSeeder::class,
+                       TicketSeeder::class
                     ]);
 
 
