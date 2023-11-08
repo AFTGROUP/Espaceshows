@@ -6,6 +6,7 @@ use App\Http\Controllers\ADMIN\AuthController;
 use App\Http\Controllers\ADMIN\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserStatutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+

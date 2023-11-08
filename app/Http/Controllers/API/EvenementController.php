@@ -80,6 +80,7 @@ class EvenementController extends Controller
  * )
  */
 
+//Enregistrement d'un évènement
  public function store(Request $request)
 {
     $validator = Validator::make($request->all(), [
@@ -95,6 +96,7 @@ class EvenementController extends Controller
         'nombre_place_disponible' => 'required|numeric',
         'type_ticket_id' => 'required',
         'prix_ticket' => 'required',
+        'nombre_ticket_disponible' => 'required|numeric',
     ], [
         'required' => 'Le champ :attribute est requis.',
         'numeric' => 'Le champ :attribute doit être numérique.',
@@ -124,24 +126,21 @@ class EvenementController extends Controller
     $evenement->nombre_place_disponible = $request->nombre_place_disponible;
     $evenement->type_evenement_id = $request->type_evenement_id;
     $evenement->user_id = Auth::user()->id;
-    //$evenement->save();
+    $evenement->save();
 
     // Enregistrez les tickets
-    $type_tickets = $request->type_ticket_id;
-    $prix_tickets = $request->prix_ticket;
-    
-    if (!empty($type_tickets) && is_array($type_tickets) && count($type_tickets) === count($prix_tickets)) {
-        foreach ($type_tickets as $key => $type_ticket) {
-            $ticket = new Ticket();
-            $ticket->code = $code;
-            $ticket->type_ticketi_id = $type_ticket;
-            $ticket->prix_ticket = $prix_tickets[$key];
-            $ticket->evenement_id = $evenement->id;
-            dd($ticket);
-            $ticket->save();
-            
-        }
+    $tickets = $request->input('tickets');
+
+    foreach ($tickets as $ticketData) {
+        $ticket = new Ticket();
+        $ticket->code = $code;
+        $ticket->type_ticket_id = $ticketData['type_ticket_id'];
+        $ticket->prix_ticket = $ticketData['prix_ticket'];
+        $ticket->nombre_ticket_disponible = $ticketData['nombre_ticket_disponible'];
+        $ticket->evenement_id = $evenement->id;
+        $ticket->save();
     }
+            
 
     return response()->json(["message" => "Événement enregistré avec succès"], 200);
 }

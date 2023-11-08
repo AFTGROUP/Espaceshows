@@ -104,3 +104,39 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/evenement', [EvenementController::class, 'store']);
     Route::post('/type', [TypeEvenementController::class, 'store']);
 });
+
+
+/**
+ * Notifications endpoints
+ */
+Route::middleware(['api'])->group(function ($router) {
+
+    Route::post('/sendNotification/{content}', [NotificationController::class, 'sendNotification']);
+    // Route::post('/markAsRead', [NotificationController::class, 'markAsRead']);
+    Route::put('/enableNotification', [NotificationController::class, 'enableNotification']);
+    Route::put('disabledNotification', [NotificationController::class, 'disabledNotification']);
+});
+
+
+/**
+ * Country & cities endpoints
+ */
+
+Route::middleware(['api'])->group(function ($router) {
+
+    Route::get('/allCountryAndPosition', [CountryStateCityController::class, 'allCountryAndPosition']); //TOus les pays et positions
+    Route::post('/getStateInCountry', [CountryStateCityController::class, 'getStateInCountry']); // Departements/Etats d'un pays
+    Route::post('/getCityInState', [CountryStateCityController::class, 'getCityInState']); //Villes d'un département
+    Route::post('/getCityInCountry', [CountryStateCityController::class, 'getCityInCountry']); //Villes d'un pays
+
+
+});
+
+
+/**
+ * Réservation tickets endpoints
+ */
+Route::middleware(['api'])->group(function ($router) {
+
+    Route::get('/historique-commandes', [EvenementController::class, 'historiqueCommandes']); //reservation
+});
