@@ -71,6 +71,39 @@ class NotificationController extends Controller
     }
 
 
+    public function allNotifications(Request $request)
+    {
+        try {
+            $allNotifications = [];
+            $user = Auth::user();
+            foreach ($user->notifications as $notification) {
+                $allNotifications[] = $notification->data;
+            }
+            return $this->respond($allNotifications, 'Toutes les notifications lues ou non');
+        } catch (Exception $e) {
+            return $this->respondWithMessage('' . $e->getMessage());
+        }
+    }
+
+    public function unreadNotifications(Request $request)
+    {
+
+        try {
+            $unreadNotifications = [];
+            $user = Auth::user();
+            foreach ($user->unreadNotifications as $notification) {
+                $unreadNotifications[] = $notification->data;
+            }
+            return $this->respond($unreadNotifications, 'Toutes les notifications non lues');
+        } catch (Exception $e) {
+            return $this->respondWithMessage('' . $e->getMessage());
+        }
+    }
+
+    public function markAsRead(Request $request, $id)
+    {
+    }
+
     /**
      * Activer les notifications pour l'utilisateur authentifié.
      *
