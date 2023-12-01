@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Commentaire;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
                        TypeTicketsSeeder::class,
                        TypeEvenementSeeder::class,
                        EvenementSeeder::class,
+                       CommentaireSeeder::class,
                        TicketSeeder::class
                     ]);
 

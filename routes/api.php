@@ -4,7 +4,10 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CountryStateCityController;
 use App\Http\Controllers\API\RegistrationController;
 use App\Http\Controllers\API\ReservationController;
+use App\Http\Controllers\API\CommentaireController;
+
 use App\Http\Controllers\RoleController;
+
 use App\Http\Controllers\API\SubscribersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -134,9 +137,26 @@ Route::middleware(['api'])->group(function ($router) {
 
 
 /**
- * Réservation tickets endpoints
+ *  historique des commandes  endpoints
  */
 Route::middleware(['api'])->group(function ($router) {
 
-    Route::get('/historique-commandes', [EvenementController::class, 'historiqueCommandes']); //reservation
+    Route::get('/historiqueCommandes', [EvenementController::class, 'historiqueCommandes']); //reservation
+});
+
+
+/**
+ *  commenataires des evenements  endpoints
+ */
+
+
+Route::middleware(['api'])->group(function ($router) {
+    Route::get('/commentaires', [CommentaireController::class, 'index']);
+    Route::get('/commentaires/{id}', [CommentaireController::class, 'show']);
+    Route::post('/commentaires', [CommentaireController::class, 'store']);
+    Route::put('/commentaires/{id}', [CommentaireController::class, 'update']);
+    Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy']);
+
+    // Nouvelle route pour obtenir les commentaires par événement
+    Route::get('/evenements/{evenement_id}/commentaires', [CommentaireController::class, 'getCommentsByEvent']);
 });

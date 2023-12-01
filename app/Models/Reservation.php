@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reservation extends Model
 {
-    use HasFactory UUID;
+    use HasFactory, UUID; // Separate multiple traits with a comma
 
     protected $table = 'reservations';
 
@@ -22,8 +22,8 @@ class Reservation extends Model
         'user_id',
         'ticket_id',
     ];
+}
 
     // Vous pouvez ajouter des relations Eloquent avec d'autres modèles ici, si nécessaire.
 
 
-}

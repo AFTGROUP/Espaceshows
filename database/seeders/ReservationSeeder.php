@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\Models\Reservation;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
 
 class ReservationsSeeder extends Seeder
 {
@@ -14,10 +16,10 @@ class ReservationsSeeder extends Seeder
                'date_reservation' => now(),
                'nom_utilisateur' => 'zinmonse',
                'prenom_utilisateur' => 'sylvie',
-               'type_ticket_id' => '1',
+               'type_ticket_id' => 1, // Change to integer
                'mode_paiement' => 'moov',
-               'user_id' => '2',
-               'ticket_id' => '1',
+               'user_id' => 2,
+               'ticket_id' => 1,
 
            ],
         ]);
@@ -27,10 +29,10 @@ class ReservationsSeeder extends Seeder
             'date_reservation' => now(),
             'nom_utilisateur' => 'Nom Utilisateur',
             'prenom_utilisateur' => 'Prénom Utilisateur',
-            'type_ticket_id' => 1, // ID du type de ticket
-            'mode_paiement' => 'Moov', // Mode de paiement
-            'user_id' => 1, // ID de l'utilisateur
-            'ticket_id' => 1, // ID du ticket
+            'type_ticket_id' => 1, // Change to integer
+            'mode_paiement' => 'Moov',
+            'user_id' => 1,
+            'ticket_id' => 1,
         ]);
     }
 }

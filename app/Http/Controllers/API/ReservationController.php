@@ -19,9 +19,14 @@ class ReservationController extends Controller
     
     public function index()
     {
-        // Récupérer la liste complète des réservations
-        $reservations = Reservation::all();
-        return response()->json($reservations);
+        try {
+            // Retrieve the complete list of reservations
+            $reservations = Reservation::all();
+    
+            return response()->json($reservations, 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred.'], 500);
+        }
     }
     
     public function show($id)

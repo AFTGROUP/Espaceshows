@@ -4,6 +4,9 @@ namespace App\Traits;
 
 use Illuminate\Support\Str;
 
+
+
+
 trait UUID
 {
     protected static function boot ()
@@ -21,6 +24,17 @@ trait UUID
             }
         });
 
+    }
+    /**
+     * Boot the UUID trait for a model.
+     *
+     * @return void
+     */
+    protected static function bootUUID()
+    {
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = Str::uuid()->toString();
+        });
     }
 
     // Tells the database not to auto-increment this field
