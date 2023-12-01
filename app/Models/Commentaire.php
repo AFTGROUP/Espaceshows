@@ -20,7 +20,7 @@ class Commentaire extends Model
     ];
 
     protected $casts = [
-        'id' => 'uuid', // Assurez-vous que la colonne 'id' est castée en tant que uuid
+        'id' => 'uuid', 
     ];
 
     public function user()

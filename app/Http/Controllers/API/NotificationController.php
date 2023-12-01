@@ -70,7 +70,27 @@ class NotificationController extends Controller
         }
     }
 
-
+    /**
+     * @OA\Get(
+     *     path="/api/allNotifications",
+     *     summary="Récupère toutes les notifications de l'utilisateur",
+     *     tags={"Notifications"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Liste des notifications",
+     *
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Non autorisé",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Erreur serveur",
+     *     ),
+     *     security={{"bearerAuth": {}}}
+     * )
+     */
     public function allNotifications(Request $request)
     {
         try {
@@ -84,6 +104,29 @@ class NotificationController extends Controller
             return $this->respondWithMessage('' . $e->getMessage());
         }
     }
+
+
+    /**
+     * @OA\Get(
+     *     path="/api/unreadNotifications",
+     *     summary="Récupère toutes les notifications non lues de l'utilisateur",
+     *     tags={"Notifications"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Liste des notifications non lues",
+     *
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Non autorisé",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Erreur serveur",
+     *     ),
+     *     security={{"bearerAuth": {}}}
+     * )
+     */
 
     public function unreadNotifications(Request $request)
     {
@@ -100,8 +143,51 @@ class NotificationController extends Controller
         }
     }
 
+    /**
+     * @OA\Put(
+     *     path="/api/markAsRead/{id}",
+     *     summary="Marque une notification comme lue",
+     *     tags={"Notifications"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID de la notification à marquer comme lue",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Notification marquée comme lue avec succès",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Notification non trouvée",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Non autorisé",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Erreur serveur",
+     *     ),
+     *     security={{"bearerAuth": {}}}
+     * )
+     */
     public function markAsRead(Request $request, $id)
     {
+        try {
+            $user = Auth::user();
+            $notification = $user->notifications()->find($id);
+            if ($notification) {
+                $notification->markAsRead();
+                return $this->respondWithMessage('Lu');
+            } else {
+                return $this->respondWithMessage('Notification non trouvée');
+            }
+        } catch (Exception $e) {
+            return $this->respondWithMessage('' . $e->getMessage());
+        }
     }
 
     /**

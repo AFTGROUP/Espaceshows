@@ -546,6 +546,95 @@
                 ]
             }
         },
+        "/api/allNotifications": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Récupère toutes les notifications de l'utilisateur",
+                "operationId": "d04ab7400668a6a3da6e1a07a77996ac",
+                "responses": {
+                    "200": {
+                        "description": "Liste des notifications"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "500": {
+                        "description": "Erreur serveur"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/unreadNotifications": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Récupère toutes les notifications non lues de l'utilisateur",
+                "operationId": "485a722ba6b2eb7bfb0024319b76f739",
+                "responses": {
+                    "200": {
+                        "description": "Liste des notifications non lues"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "500": {
+                        "description": "Erreur serveur"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/markAsRead/{id}": {
+            "put": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Marque une notification comme lue",
+                "operationId": "e207e98f477b1dfb1003294bcb1b9622",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la notification à marquer comme lue",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification marquée comme lue avec succès"
+                    },
+                    "404": {
+                        "description": "Notification non trouvée"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "500": {
+                        "description": "Erreur serveur"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/enableNotification": {
             "put": {
                 "tags": [

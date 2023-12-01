@@ -14,6 +14,7 @@ class Evenement extends Model
     use HasFactory, UUID;
 
     protected $fillable = [
+        'id',
         'nom',
         'pays',
         'ville',
@@ -26,12 +27,12 @@ class Evenement extends Model
         'type_evenement_id',
     ];
 
-    public function typeEvenement() 
+    public function typeEvenement()
     {
         return $this->belongsTo(TypeEvenement::class);
     }
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class, 'organisateur_id');
     }
@@ -41,12 +42,12 @@ class Evenement extends Model
         return $this->hasMany(Commentaire::class);
     }
 
-    public function ticket() 
+    public function ticket()
     {
         return $this->hasMany(Ticket::class);
     }
 
-    
+
 
 
 }

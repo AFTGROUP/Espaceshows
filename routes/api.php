@@ -117,7 +117,7 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('/sendNotification/{content}', [NotificationController::class, 'sendNotification']);
     Route::get('/allNotifications', [NotificationController::class, 'allNotifications']);
     Route::get('/unreadNotifications', [NotificationController::class, 'unreadNotifications']);
-     Route::post('/markAsRead/{id}', [NotificationController::class, 'markAsRead']);
+     Route::get('/markAsRead/{id}', [NotificationController::class, 'markAsRead']);
     Route::put('/enableNotification', [NotificationController::class, 'enableNotification']);
     Route::put('disabledNotification', [NotificationController::class, 'disabledNotification']);
 });
