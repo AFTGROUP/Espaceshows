@@ -19,9 +19,7 @@ class Commentaire extends Model
         'evenement_id',
     ];
 
-    protected $casts = [
-        'id' => 'uuid', 
-    ];
+   
 
     public function user()
     {

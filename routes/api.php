@@ -153,12 +153,9 @@ Route::middleware(['api'])->group(function ($router) {
 
 
 Route::middleware(['api'])->group(function ($router) {
-    Route::get('/commentaires', [CommentaireController::class, 'index']);
-    Route::get('/commentaires/{id}', [CommentaireController::class, 'show']);
-    Route::post('/commentaires', [CommentaireController::class, 'store']);
-    Route::put('/commentaires/{id}', [CommentaireController::class, 'update']);
-    Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy']);
-
-    // Nouvelle route pour obtenir les commentaires par événement
-    Route::get('/evenements/{evenement_id}/commentaires', [CommentaireController::class, 'getCommentsByEvent']);
+    Route::get('/commentaires/{evenementId}', [CommentaireController::class, 'getCommentairesByEvenement']);
+    Route::post('/commentaires', [CommentaireController::class, 'addCommentaire']);
+    Route::put('/commentaires/{commentaireId}', [CommentaireController::class, 'updateCommentaire']);
+    Route::delete('/commentaires/{commentaireId}', [CommentaireController::class, 'deleteCommentaire']);
+    
 });

@@ -11,102 +11,84 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentaireController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('jwt.verify');
     }
 
-    public function index()
+    /**
+     * Affiche tous les commentaires d'un événement avec les utilisateurs associés.
+     *
+     * @param  string  $evenementId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCommentairesByEvenement($evenementId)
     {
-        try {
-            // Récupérer la liste complète des commentaires
-            $commentaires = Commentaire::all();
-    
-            return response()->json($commentaires, 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Une erreur s\'est produite.'], 500);
-        }
+        $commentaires = Commentaire::where('evenement_id', $evenementId)->with('user')->get();
+
+        return response()->json($commentaires);
     }
 
-    public function show($id)
+    /**
+     * Ajoute un nouveau commentaire à un événement.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addCommentaire(Request $request)
     {
-        // Récupérer un commentaire spécifique par ID
-        $commentaire = Commentaire::findOrFail($id);
-        return response()->json($commentaire);
-    }
-
-    public function store(Request $request)
-    {
-        // Valider les données entrées
         $validator = Validator::make($request->all(), [
             'contenu' => 'required|string',
             'user_id' => 'required|exists:users,id',
             'evenement_id' => 'required|exists:evenements,id',
-        ], [
-            'required' => 'Le champ :attribute est requis.',
-            'exists' => 'L\'élément avec l\'identifiant :attribute n\'existe pas.',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['Erreurs de validation' => $validator->errors()], 400);
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        $user = Auth::user();
+        $commentaire = Commentaire::create($request->all());
 
-        // Enregistrez le commentaire
-        $commentaire = new Commentaire();
-        $commentaire->id = \Illuminate\Support\Str::uuid(); // Génération de l'ID UUID
-        $commentaire->contenu = $request->contenu;
-        $commentaire->user_id = $user->id;
-        $commentaire->evenement_id = $request->evenement_id;
-        $commentaire->save();
-
-        return response()->json(["message" => "Commentaire enregistré avec succès"], 200);
+        return response()->json($commentaire, 201);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Met à jour un commentaire existant.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $commentaireId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateCommentaire(Request $request, $commentaireId)
     {
-        // Valider les données entrées
         $validator = Validator::make($request->all(), [
             'contenu' => 'required|string',
             'user_id' => 'required|exists:users,id',
             'evenement_id' => 'required|exists:evenements,id',
-        ], [
-            'required' => 'Le champ :attribute est requis.',
-            'exists' => 'L\'élément avec l\'identifiant :attribute n\'existe pas.',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['Erreurs de validation' => $validator->errors()], 400);
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        // Trouver le commentaire existant
-        $commentaire = Commentaire::findOrFail($id);
-
-        // Mettre à jour le commentaire
+        $commentaire = Commentaire::findOrFail($commentaireId);
         $commentaire->update($request->all());
 
         return response()->json($commentaire);
     }
 
-    public function destroy($id)
+    /**
+     * Supprime un commentaire existant.
+     *
+     * @param  string  $commentaireId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteCommentaire($commentaireId)
     {
-        // Supprimer un commentaire
-        $commentaire = Commentaire::findOrFail($id);
+        $commentaire = Commentaire::findOrFail($commentaireId);
         $commentaire->delete();
+
         return response()->json(null, 204);
     }
-
-    public function getCommentsByEvent($evenement_id)
-    {
-        try {
-            // Récupérer tous les commentaires associés à un événement spécifique
-            $commentaires = Commentaire::where('evenement_id', $evenement_id)->get();
-
-            return response()->json($commentaires, 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Une erreur s\'est produite.'], 500);
-        }
-    }
-
 }
