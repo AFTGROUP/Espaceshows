@@ -23,6 +23,7 @@ class Evenement extends Model
         'date_debut',
         'date_fin',
         'mots_cles',
+        'statut',
         'nombre_place_disponible',
         'type_evenement_id',
     ];
@@ -48,6 +49,9 @@ class Evenement extends Model
     }
 
 
+    public function media(){
+        return $this->hasOne(EvenementMedias::class);
+    }
 
 
 }

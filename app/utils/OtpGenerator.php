@@ -7,7 +7,8 @@ use Ichtrojan\Otp\Models\Otp as ModelsOtp;
 use Illuminate\Support\Facades\Mail;
 
 
-function generateOtp($identifier, $mail) {
+function generateOtp($identifier, $mail)
+{
     //Génération du code otp en son envoi à l'utilisateur
 
     $otp = new Otp();
@@ -18,7 +19,4 @@ function generateOtp($identifier, $mail) {
     // Envoyez le code OTP à l'utilisateur (par e-mail, SMS, etc.)
     Mail::to($mail)
         ->send(new SendOtp($CodeOtp));
-
-
-
-        }
+}

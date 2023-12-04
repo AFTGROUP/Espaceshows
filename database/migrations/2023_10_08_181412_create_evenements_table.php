@@ -19,12 +19,11 @@ return new class extends Migration
             $table->string('pays');
             $table->string('ville');
             $table->string('description');
-            $table->string('photo');
             $table->date('date_debut');
             $table->date('date_fin');
             $table->string('mots_cles');
             $table->integer('nombre_place_disponible');
-            $table->enum('statut', ['en cours', 'terminé', 'validé', 'rejeté', 'en attente'])->default('en cours');
+            $table->enum('statut', ['en cours', 'terminé', 'validé', 'rejeté', 'en attente'])->default('en attente');
             $table->foreignUuid('type_evenement_id')->constrained('type_evenements');
             $table->foreignUuid('user_id')->constrained('users');
             $table->timestamps();

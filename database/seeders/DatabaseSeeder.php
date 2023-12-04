@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
                        TypeTicketsSeeder::class,
                        TypeEvenementSeeder::class,
                        EvenementSeeder::class,
-                       CommentaireSeeder::class,
                        TicketSeeder::class
                     ]);
 
