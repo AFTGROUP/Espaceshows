@@ -5,6 +5,7 @@ use App\Http\Controllers\API\CountryStateCityController;
 use App\Http\Controllers\API\RegistrationController;
 use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\API\CommentaireController;
+use App\Http\Controllers\API\LikeController;
 
 use App\Http\Controllers\RoleController;
 
@@ -148,7 +149,7 @@ Route::middleware(['api'])->group(function ($router) {
 
 
 /**
- *  commenataires des evenements  endpoints
+ *  Likes et commenataires des evenements  endpoints
  */
 
 
@@ -158,4 +159,19 @@ Route::middleware(['api'])->group(function ($router) {
     Route::put('/commentaires/{commentaireId}', [CommentaireController::class, 'updateCommentaire']);
     Route::delete('/commentaires/{commentaireId}', [CommentaireController::class, 'deleteCommentaire']);
     
+
+/**
+ *  Likes  des evenements  endpoints
+ */
+
+    Route::get('/{evenementId}', [LikeController::class, 'likeByEvent']);
+    Route::get('/liked-people/{evenementId}', [LikeController::class, 'likedPeople']);
+    Route::get('/total-likes/{evenementId}', [LikeController::class, 'totalLikes']);
+    Route::get('/grand-likes', [LikeController::class, 'grandLikes']);
+    Route::get('/petit-evenement', [LikeController::class, 'petitEvenement']);
+
 });
+
+
+
+
