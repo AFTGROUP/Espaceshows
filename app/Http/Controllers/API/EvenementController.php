@@ -237,6 +237,34 @@ class EvenementController extends Controller
     }
 
 
+    public function getEventsWithStatistics($organisateurId)
+    {
+        // Récupérer tous les événements de l'organisateur
+        $evenements = Evenement::where('organisateur_id', $organisateurId)->get();
+
+        // Initialiser le tableau pour stocker les résultats
+        $result = [];
+
+        foreach ($evenements as $evenement) {
+            // Récupérer le nombre de likes pour l'événement
+            $likesCount = $evenement->likes()->count();
+
+            // Récupérer le nombre de tickets vendus pour l'événement
+            $ticketsVendus = Ticket::where('evenement_id', $evenement->id)->count();
+
+            // Ajouter d'autres statistiques selon les besoins
+            $statistics = [
+                'likes_count' => $likesCount,
+                'tickets_vendus' => $ticketsVendus,
+                // Ajoutez d'autres statistiques si nécessaire
+            ];
+
+            // Ajouter le résultat à la liste des résultats
+            $result[] = $statistics;
+        }
+
+        return response()->json(['data' => $result]);
+    }
 
 
 

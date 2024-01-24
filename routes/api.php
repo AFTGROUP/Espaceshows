@@ -170,7 +170,18 @@ Route::middleware(['api'])->group(function ($router) {
     Route::get('/grand-likes', [LikeController::class, 'grandLikes']);
     Route::get('/petit-evenement', [LikeController::class, 'petitEvenement']);
 
+
+
+    Route::get('/organisateurs/{organisateurId}/evenements', [EvenementController::class, 'getEventsWithStatistics']);
+
 });
+
+
+
+
+/**
+ *  Likes et commenataires des evenements  endpoints
+ */
 
 
 
