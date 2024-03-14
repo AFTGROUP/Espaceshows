@@ -203,12 +203,12 @@
             </div>
             
             <div class="offcanvas-header border-top">
-            <a href="/creerevenement" class="btn btn-dark w-100" target="_blank" rel="noopener">
+            <a href="/api/evenement" class="btn btn-dark w-100" target="_blank" rel="noopener">
                 
                 Organiser un événement
               </a>
               &nbsp;&nbsp;
-              <a href="/login" class="btn btn-danger w-100" target="_blank" rel="noopener">
+              <a href="/api/login" class="btn btn-danger w-100" target="_blank" rel="noopener">
                 
                 Se Connecter
               </a>
